@@ -1,0 +1,144 @@
+footer {
+    text-align: center;
+    font-family: "Bebas Neue";
+    letter-spacing: 2px;
+    padding: 10px 0px;
+    background: #007BFF;
+    width: 100%;
+    color: #ffffff;
+}
+
+footer a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.footer a:hover {
+    color: #dddddd;
+}
+
+.nav-button {
+    font-size: 20px;
+    margin-right: 20px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.nav-button:hover {
+    color: #dddddd;
+}
+
+.logo-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.logo-container img {
+    width: 75px;
+    height: 75px;
+    border-radius: 10%;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #f4f4f4;
+    font-family: 'Fira Sans';
+}
+
+.nav-container {
+    font-family: "Bebas Neue";
+    letter-spacing: 2px;
+    background-color: #007BFF;
+    text-align: right;
+    font-size: 18px;
+    padding: 15px 0px;
+    width: 100%;
+}
+
+.nav-hamburger-container {
+    font-family: "Bebas Neue";
+    letter-spacing: 2px;
+    background-color: #007BFF;
+    color: #007BFF;
+    text-align: right;
+    font-size: 28px;
+    padding: 15px 0px;
+    width: 100%;
+}
+
+.hamburger-container {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 2;
+    text-align: right;
+    padding: 15px 0px;
+}
+.hamburger-container button {
+    margin-right: 20px;
+    font-size: 30px;
+    border: none;
+    color: #dddddd;
+    background: #1b2b69;
+    border-radius: 5px;
+}
+.hamburger-container button:hover {
+    background: #2b3b7a;
+}
+
+.nav-button-hamburger-closed {
+    display: none;
+}
+.nav-button-hamburger-open {
+    font-family: "Bebas Neue";
+    letter-spacing: 2px;
+    display: block;
+    font-size: 15px;
+    margin-right: 20px;
+    margin-top: 5px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.hamburger-button-container-open {
+    display: block;
+    z-index: 1;
+    position: absolute;
+    background-color: #007BFF;
+    text-align: right;
+    top: 0px;
+    right: 0px; 
+    width: 150px;
+    height: 250px;
+}
+
+.hamburger-button-container-open a:hover {
+    color: #dddddd;
+}
+
+.hamburger-button-container-closed {
+    display: none;
+}
+
+/* Nav Bar Responsive */
+.nav-container {display:block;}
+.nav-hamburger-container {display:none;}
+.hamburger-container {display:none;}
+.nav-button-hamburger-closed {display:none;}
+.nav-button-hamburger-open {display:none;}
+.hamburger-button-container-open {display:none;}
+.hamburger-button-container-closed {display:none;}
+
+@media (max-width: 800px) {
+    .nav-container {display:none;}
+
+    .nav-hamburger-container {display:block;}
+    .hamburger-container {display:block;}
+    .nav-button-hamburger-open {display:block;}
+    .hamburger-button-container-open {display:block;}   
+}

@@ -1,0 +1,63 @@
+[
+        {
+            "image": "images/camry2022.png",
+            "carname": "2022 Toyota Camry",
+            "price": "$25,000",
+            "details": "A reliable and fuel-efficient midsize sedan with advanced safety features."
+        },
+        {
+            "image": "images/2021civic.jpeg",
+            "carname": "2021 Honda Civic",
+            "price": "$22,500",
+            "details": "A compact sedan known for its efficiency, modern design, and technology."
+        },
+        {
+            "image": "images/2020mustang.avif",
+            "carname": "2020 Ford Mustang GT",
+            "price": "$35,000",
+            "details": "An iconic American muscle car featuring a powerful V8 engine and sporty handling."
+        },
+        {
+            "image": "images/2019chevy.avif",
+            "carname": "2019 Chevrolet Silverado 1500",
+            "price": "$42,000",
+            "details": "A full-size pickup truck with excellent towing capacity and durability."
+        },
+        {
+           "image": "images/2023tesla.avif",
+            "carname": "2023 Tesla Model 3",
+            "price": "$45,000",
+            "details": "A sleek and high-tech electric vehicle with autopilot and long-range capability."
+        },
+        {
+            "image": "images/2021bmw.png",
+            "carname": "2021 BMW 3 Series",
+            "price": "$50,000",
+            "details": "A luxury sedan with powerful performance and cutting-edge interior features."
+        },
+        {
+            "image": "images/2022mercedes.avif",
+            "carname": "2022 Mercedes-Benz C-Class",
+            "price": "$55,000",
+            "details": "A stylish and luxurious sedan offering advanced technology and comfort."
+        },
+        {
+            "image": "images/2020audi.jpg",
+            "carname": "2020 Audi Q5",
+            "price": "$48,000",
+            "details": "A premium SUV with Quattro all-wheel drive and a spacious interior."
+        },
+        {
+           "image": "images/2018jeep.avif",
+            "carname": "2018 Jeep Wrangler",
+            "price": "$40,000",
+            "details": "A rugged off-road SUV built for adventure with exceptional durability."
+        },
+        {
+            "image": "images/2019porsche.jpg",
+            "carname": "2019 Porsche 911 Carrera",
+            "price": "$120,000",
+            "details": "A high-performance sports car with an iconic design and outstanding driving dynamics."
+        }
+    ]
+    

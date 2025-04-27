@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Cars, Used Cars, Cheap, Dealership, Selling">
+<title>Second Spin</title>
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+<style>
+    .header {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 2px;
+        text-align: center;
+        padding: 30px 20px;
+    }
+
+    .header h1 {
+        font-size: 40;
+        color: #333;
+    }
+
+    .header p {
+        font-size: 20;
+        color: #666;
+    }
+    .button {
+        margin-top: auto;
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 15px;
+        color: white;
+        background: #007BFF;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background 0.2s;
+    }
+    .button:hover {
+        background: #0056b3;
+    }
+
+    .container {
+        color: #333;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 20px;
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 1px;
+        background: #f4f4f4;
+    }
+    .column {
+            flex: 1;
+            max-width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: left;
+            font-size: 20px;
+        }
+    .column h2 {
+        margin: 0px 0px 5px 0px;
+    }
+    img {
+        display: block;
+        width: 100%;
+    }
+    .image-container {
+        position: relative;
+        width: 100%;
+    }
+
+    .image-container img {
+        z-index: 0;
+        width: 100%;
+    }
+
+    .overlay-text {
+        position: absolute;
+        letter-spacing: 10px;
+        color: #f4f4f4;
+        top: 15%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 80px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    @media (max-width: 1100px) {
+        .overlay-text {
+            font-size: 60px;
+            letter-spacing: 5px;
+        }
+    }
+    @media (max-width: 900px) {
+        .container {
+            flex-direction: column;
+            align-items: center;
+        }
+        .column {
+            max-width: 80%;
+            text-align: justify;
+        }
+        .overlay-text {
+            font-size: 40px;
+            letter-spacing: 5px;
+        }
+    }
+    @media (max-width: 600px) {
+        .column {
+            max-width: 90%;
+            text-align: justify;
+        }
+        .overlay-text {
+            font-size: 30px;
+        }
+    }
+
+</style>
+
+</head>
+<body>
+
+<a href="home.html" class="logo-container">
+    <img src="images/logo.png">
+</a>
+
+<script src="navBar.js"></script>
+
+<!-- Normal Nav Bar -->
+<div class="nav-container">
+    <br />
+    <a href="home.html" class="nav-button">Home</a>
+    <a href="shop.html" class="nav-button">Shop</a>
+    <a href="carvalcalc.html" class="nav-button">Value Calculator</a>
+    <a href="about.html" class="nav-button">About Us</a>
+    <a href="help.html" class="nav-button">Help</a>
+    <a href="reviews.html" class="nav-button">Reviews</a>
+    <a href="contact.html" class="nav-button">Contact Us</a>
+    <br /><br />
+</div>
+
+<!-- Hamburger Nav Bar -->
+<div class="nav-hamburger-container">
+    <br /><a>Not showing</a><br />
+</div>
+
+<div class="hamburger-container">
+    <button onclick="toggleMenu()">&nbsp;&equiv;&nbsp;</button>
+</div>
+
+<span class="hamburger-button-container-closed">
+    <br /><br /><br /><br />
+    <a href="home.html" class="nav-button-hamburger-closed">Home</a>
+    <a href="shop.html" class="nav-button-hamburger-closed">Shop</a>
+    <a href="carvalcalc.html" class="nav-button-hamburger-closed">Value Calculator</a>
+    <a href="about.html" class="nav-button-hamburger-closed">About Us</a>
+    <a href="help.html" class="nav-button-hamburger-closed">Help</a>
+    <a href="reviews.html" class="nav-button-hamburger-closed">Reviews</a>
+    <a href="contact.html" class="nav-button-hamburger-closed">Contact Us</a>
+</span>
+
+<div class="image-container">
+    <img src="images/car.jpg" alt="Car">
+    <div class="overlay-text">Second&nbsp;&nbsp;Spin&nbsp;&nbsp;Automotive</div>
+</div>
+
+<div class="header">
+    <h1>Find Your Perfect Ride at Second Spin!</h1>
+    <p>Quality Used Cars at Unbeatable Prices!</p>
+    <a href="shop.html" class="button">Browse Inventory</a>
+</div>
+
+<div class="container">
+    <div class="column">
+        <h2>Why Choose Second Spin?</h2>
+        <ul>
+            <li>Quality Inspected Vehicles</li>
+            <li>Affordable Prices & Financing Options</li>
+            <li>Trusted by Thousands of Customers</li>
+            <li>Hassle-Free Car Buying Experience</li>
+        </ul>
+        <a href="about.html" class="button">Learn more about us</a>
+    </div>
+
+    <div class="column">
+        <h2>Find Out Your Car's Worth</h2>
+        <p>Use our value calculator to get an estimate before trading in 
+            your car. Our tool provides a quick, reliable estimate based on 
+            market trends, mileage, and condition — ensuring you get the best
+            possible price.</p>
+
+        <a href="carvalcalc.html" class="button">Check My Car's Value</a>
+    </div>
+
+    <div class="column">
+        <h2>What Our Customers Say</h2>
+        <blockquote>
+            "Second Spin made buying a used car so easy! Great prices and amazing service!"  
+            <cite>- Alex R.</cite>
+        </blockquote>
+        <blockquote>
+            "Highly recommend! I got a great deal and the process was super smooth."  
+            <cite>- Jamie L.</cite>
+        </blockquote>
+        <a href="reviews.html" class="button">Read More Reviews</a>
+    </div>
+</div>
+
+<!-- <ul id="foot"> -->
+<footer class="footer">
+    <a href='contact.html'>Contact</a>
+    <a>&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+    <a href='about.html'>About Us</a>
+    <a>&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+    <a href='shop.html'>Shop</a>
+    <br />
+    &copy; 2025 Second Spin&trade;&nbsp;&nbsp;|&nbsp;&nbsp;All Rights Reserved
+</footer>
+<!-- </ul> -->
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Cars, Used Cars, Cheap, Dealership, Selling">
+<title>Second Spin</title>
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        background: #f4f4f4;;
+    }
+    .text-container {
+        text-align: left;
+        padding: 10px 100px;
+    }
+    h1 {
+        text-align: center;
+        padding-top: 15px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 40;
+        letter-spacing: 2px;
+    }
+    h2 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 20;
+        letter-spacing: 1.5px;
+        margin-bottom: 0px;
+    }
+    ul {
+        padding-left: 30px;
+        list-style-position: outside;
+    }
+    .no-bullet {
+        padding-left: 15px;
+        list-style-type: none;
+    }
+    li {
+        margin-bottom: 10px;
+        padding-left: 25px;
+        text-indent: -33px;
+    }
+    li a {
+        color: #000;
+    }
+    .text-container a {
+        color: #000;
+    }
+    li a:hover {
+        color: #666;
+    }
+    .text-container a:hover {
+        color: #666;
+    }
+    
+    .about-container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding-right: 100px;
+    }
+
+    .about-text {
+        width: 70%;
+    }
+
+    .founder-section {
+        width: 30%;
+        background: #e2e2e2;
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 10px;
+        text-align: center;
+    }
+    .founder-section p {
+        text-align: left;
+    }
+
+    .founder-img {
+        width: 100%;
+        max-width: 250px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    @media (max-width: 1000px) {
+        .about-container {
+            flex-direction: column;
+            align-items: center;
+        }
+        .about-container {
+            padding: 0px;
+        }
+        .about-text {
+            padding: 0px;
+            width: 100%;
+        }
+        .text-container {
+            text-align: left;
+            padding: 10px 50px;
+        }
+        .founder-section {
+            width: 70%;
+        }
+    }
+
+</style>
+
+</head>
+
+
+<body>
+    <a href="home.html" class="logo-container">
+        <img src="images/logo.png">
+    </a>
+
+    <script src="navBar.js"></script>
+
+    <!-- Normal Nav Bar -->
+    <div class="nav-container">
+        <br />
+        <a href="home.html" class="nav-button">Home</a>
+        <a href="shop.html" class="nav-button">Shop</a>
+        <a href="carvalcalc.html" class="nav-button">Value Calculator</a>
+        <a href="about.html" class="nav-button">About Us</a>
+        <a href="help.html" class="nav-button">Help</a>
+        <a href="reviews.html" class="nav-button">Reviews</a>
+        <a href="contact.html" class="nav-button">Contact Us</a>
+        <br /><br />
+    </div>
+
+    <!-- Hamburger Nav Bar -->
+    <div class="nav-hamburger-container">
+        <br /><a>Not showing</a><br />
+    </div>
+
+    <div class="hamburger-container">
+        <button onclick="toggleMenu()">&nbsp;&equiv;&nbsp;</button>
+    </div>
+
+    <span class="hamburger-button-container-closed">
+        <br /><br /><br /><br />
+        <a href="home.html" class="nav-button-hamburger-closed">Home</a>
+        <a href="shop.html" class="nav-button-hamburger-closed">Shop</a>
+        <a href="carvalcalc.html" class="nav-button-hamburger-closed">Value Calculator</a>
+        <a href="about.html" class="nav-button-hamburger-closed">About Us</a>
+        <a href="help.html" class="nav-button-hamburger-closed">Help</a>
+        <a href="reviews.html" class="nav-button-hamburger-closed">Reviews</a>
+        <a href="contact.html" class="nav-button-hamburger-closed">Contact Us</a>
+    </span>
+
+    <h1>About Second Spin</h1>
+
+    <div class="text-container">
+        <!-- <h2>Who We Are</h2> -->
+        <p>At Second Spin, we believe that buying a car should be easy, affordable, 
+            and stress-free. Our mission is to provide quality used vehicles at 
+            unbeatable prices while ensuring a seamless buying experience. Whether 
+            you're looking for your first car, an upgrade, or a reliable family 
+            vehicle, we've got you covered.
+        </p>
+    </div>
+
+    <div class="about-container">
+        <!-- Left Part -->
+        <div class="about-text">
+            <div class="text-container">
+                <h2>Our Commitment</h2>
+                <ul class="no-bullet">
+                    <li><span style="color: #0c9c16;">&#10003;</span>&emsp;<strong>
+                        Quality Inspected Vehicles</strong>: Every car in our inventory 
+                        undergoes a rigorous inspection to ensure reliability and performance.</li>
+                    <li><span style="color: #0c9c16;">&#10003;</span>&emsp;<strong>
+                        Affordable Pricing & Financing Options</strong>: We offer competitive 
+                        prices and flexible financing solutions to fit your budget.</li>
+                    <li><span style="color: #0c9c16;">&#10003;</span>&emsp;<strong>
+                        Transparency & Trust</strong>: No hidden fees, no surprises — 
+                        just honest pricing and straightforward service.</li>
+                    <li><span style="color: #0c9c16;">&#10003;</span>&emsp;<strong>
+                        Customer Satisfaction</strong>: Your happiness is our priority. 
+                        We're here to make your car-buying journey as smooth as possible.</li>
+                </ul>
+            </div>
+        
+            <div class="text-container">
+                <h2>Why Choose Us?</h2>
+                <ul>
+                    <li>&emsp;&emsp;<strong>Wide Selection</strong>: From fuel-efficient 
+                        sedans to powerful trucks, we have a variety of vehicles to meet 
+                        your needs.</li>
+                    <li>&emsp;&emsp;<strong>Comprehensive Vehicle History Reports</strong>: 
+                        Every car comes with a detailed history report so you can buy with 
+                        confidence.</li>
+                    <li>&emsp;&emsp;<strong>Certified Technicians</strong>: Our experienced 
+                        mechanics ensure every vehicle meets the highest safety and performance 
+                        standards.</li>
+                </ul>
+            </div>
+        
+            <div class="text-container">
+                <h2>How It Works</h2>
+                <ol>
+                    <li>&emsp;<a href="shop.html" style="text-decoration: underline;"><strong>Browse 
+                        Our Inventory</strong></a>: Check out our 
+                        available cars online or visit us in person.</li>
+                    <li>&emsp;<strong>Shipping</strong>: The car you selected 
+                        will be shipped to the dealership closest to you!
+                    <li>&emsp;<strong>Drive Away Happy</strong>: Get behind the wheel 
+                        of your next car with confidence!</li>
+                </ol>
+            </div>
+            
+            <div class="text-container">
+                <h2>Looking to Sell Your Car?</h2>
+                <p>Use our <a href="carvalcalc.html" style="text-decoration: underline">
+                    Value Calculator</a> to determine the worth of your current car.
+                    If we're interested, we might buy it!
+                </p>
+            </div>
+
+            <div class="text-container">
+                <h2>Get In Touch</h2>
+                <p>If you have any other questions or concerns or would like to 
+                    buy a car, fill out our <a href="contact.html" style="text-decoration: underline;">contact form</a> 
+                    to get in touch.
+                </p>
+                <br /><br />
+            </div>
+        </div>
+
+        <!-- Right Part -->
+        <div class="founder-section">
+            <h2>Meet Our Founder</h2>
+            <img src="images/founder.jpg" alt="Founder Image" class="founder-img">
+            <p><strong>Leon Campbell</strong>, the visionary behind Second Spin, started the company with a 
+            mission to make car buying hassle-free and transparent. With over 15 years in the 
+            automotive industry, he is dedicated to helping people find reliable and affordable 
+            vehicles.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <a href='contact.html'>Contact</a>
+        <a>&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+        <a href='about.html'>About Us</a>
+        <a>&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+        <a href='shop.html'>Shop</a>
+        <br />
+        &copy; 2025 Second Spin&trade;&nbsp;&nbsp;|&nbsp;&nbsp;All Rights Reserved
+    </footer>
+
+</body>
