@@ -167,12 +167,15 @@
     <h1>Shop</h1>
 
     <div class="search-container">
-        <input type="text" id="searchInput" class="search-input" placeholder="Search cars...">
-        <select id="filterSelect" class="filter-select">
-            <option value="newest">Newest First</option>
-            <option value="price_asc">Price: Low to High</option>
-            <option value="price_desc">Price: High to Low</option>
-        </select>
+        <form id="searchForm" method="GET" action="shop.php">
+            <input type="text" id="searchInput" name="search" class="search-input" placeholder="Search cars..." value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
+            <select id="filterSelect" name="filter" class="filter-select">
+                <option value="newest" <?php echo ($_GET['filter'] ?? 'newest') === 'newest' ? 'selected' : ''; ?>>Newest First</option>
+                <option value="price_asc" <?php echo ($_GET['filter'] ?? '') === 'price_asc' ? 'selected' : ''; ?>>Price: Low to High</option>
+                <option value="price_desc" <?php echo ($_GET['filter'] ?? '') === 'price_desc' ? 'selected' : ''; ?>>Price: High to Low</option>
+            </select>
+            <button type="submit" style="display: none;">Search</button>
+        </form>
     </div>
 
     <div id="car-grid" class="car-grid">
@@ -272,31 +275,25 @@
     </footer>
 
     <script>
-    // Function to update the URL with search and filter parameters
-    function updateURL() {
-        const searchValue = document.getElementById('searchInput').value;
-        const filterValue = document.getElementById('filterSelect').value;
-        const url = new URL(window.location.href);
-        url.searchParams.set('search', searchValue);
-        url.searchParams.set('filter', filterValue);
-        window.history.pushState({}, '', url);
-        location.reload();
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const filterSelect = document.getElementById('filterSelect');
+        const searchForm = document.getElementById('searchForm');
 
-    // Add event listeners for search and filter
-    document.getElementById('searchInput').addEventListener('input', function(e) {
-        if (e.target.value.length >= 2 || e.target.value.length === 0) {
-            updateURL();
+        // Function to submit the form
+        function submitForm() {
+            searchForm.submit();
         }
-    });
 
-    document.getElementById('filterSelect').addEventListener('change', updateURL);
+        // Add event listener for search input
+        searchInput.addEventListener('input', function(e) {
+            if (e.target.value.length >= 2 || e.target.value.length === 0) {
+                submitForm();
+            }
+        });
 
-    // Set initial values from URL parameters
-    window.addEventListener('load', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        document.getElementById('searchInput').value = urlParams.get('search') || '';
-        document.getElementById('filterSelect').value = urlParams.get('filter') || 'newest';
+        // Add event listener for filter select
+        filterSelect.addEventListener('change', submitForm);
     });
 
     function showCarDetails(carId) {
