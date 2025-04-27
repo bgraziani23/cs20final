@@ -180,6 +180,10 @@
 
     <div id="car-grid" class="car-grid">
         <?php
+        // Enable error reporting
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+
         // Database connection
         $server = "localhost";
         $userid = "umegccruvfeiy";
@@ -195,14 +199,15 @@
         }
 
         // Get search and filter parameters
-        $search = isset($_GET['search']) ? $_GET['search'] : '';
+        $search = isset($_GET['search']) ? trim($_GET['search']) : '';
         $filter = isset($_GET['filter']) ? $_GET['filter'] : 'newest';
 
         // Build the SQL query
-        $sql = "SELECT * FROM cars";
+        $sql = "SELECT * FROM Cars";
         $params = [];
         $types = "";
 
+        // Only add WHERE clause if there's a search term
         if (!empty($search)) {
             $sql .= " WHERE Model LIKE ? OR Description LIKE ?";
             $searchTerm = "%$search%";
@@ -224,13 +229,27 @@
                 break;
         }
 
+        // Debug information
+        echo "<!-- SQL Query: " . $sql . " -->";
+        echo "<!-- Search term: " . $search . " -->";
+        echo "<!-- Filter: " . $filter . " -->";
+
         // Prepare and execute the query
         $stmt = $conn->prepare($sql);
+        if (!$stmt) {
+            die("Prepare failed: " . $conn->error);
+        }
+
         if (!empty($params)) {
             $stmt->bind_param($types, ...$params);
         }
-        $stmt->execute();
+
+        if (!$stmt->execute()) {
+            die("Execute failed: " . $stmt->error);
+        }
+
         $result = $stmt->get_result();
+        echo "<!-- Number of rows: " . $result->num_rows . " -->";
 
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {

@@ -2,13 +2,13 @@
 header('Content-Type: application/json');
 
 // Database connection
-$servername = "localhost";
-$username = "your_username";
-$password = "your_password";
-$dbname = "your_database";
+$server = "localhost";
+$userid = "umegccruvfeiy";
+$pw = "thisisapass";
+$db = "dbimljtmuxm7qy";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($server, $userid, $pw, $db);
 
 // Check connection
 if ($conn->connect_error) {
@@ -23,7 +23,7 @@ if ($carId <= 0) {
 }
 
 // Fetch car details
-$sql = "SELECT * FROM cars WHERE CarID = ?";
+$sql = "SELECT * FROM Cars WHERE CarID = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $carId);
 $stmt->execute();
