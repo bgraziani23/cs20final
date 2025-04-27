@@ -272,6 +272,32 @@
             card.style.transform = 'translateX(0px)';
         }
     });
+
+        // Function to show the modal with car details
+        function showModal(index) {
+            const car = cars[index];
+            document.getElementById('modal-car-image').src = car.Image;
+            document.getElementById('modal-car-title').innerText = car.Model;
+            document.getElementById('modal-price').innerText = car.Price;
+            document.getElementById('modal-miles').innerText = car.Miles;
+            document.getElementById('modal-location').innerText = `${car.City}, ${car.State}`;
+            document.getElementById('modal-description').innerText = car.Description;
+            document.getElementById('modal-seller').innerText = car.Username;
+            modal.style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Close the modal if the user clicks outside of it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
     
     // Fetch car data from the PHP script
     fetch('get_cars.php')
