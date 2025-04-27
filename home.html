@@ -1,3 +1,7 @@
+<?php
+session_start();    // ← NEW: enable session handling
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -123,10 +127,45 @@
         }
     }
 
+    .top-right {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .top-right a {
+        text-decoration: none;
+        color: #007BFF;
+        font-weight: bold;
+        font-family: "Fira Sans", sans-serif;
+    }
+
+    .top-right img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #007BFF;
+    }
+
 </style>
 
 </head>
 <body>
+
+<div class="top-right">
+    <?php if (isset($_SESSION['username'])): ?>
+        <a href="dashboard.php">
+            <img src="<?php echo htmlspecialchars($_SESSION['profilepic']); ?>" alt="Profile Picture">
+        </a>
+    <?php else: ?>
+        <a href="login.html">Login</a>
+        <a href="signup.html">Sign Up</a>
+    <?php endif; ?>
+</div>
 
 <a href="home.html" class="logo-container">
     <img src="images/logo.png">
