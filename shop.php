@@ -125,7 +125,7 @@
     }
 </style>
 <body>
-    <a href="home.html" class="logo-container">
+<a href="home.html" class="logo-container">
         <img src="images/logo.png">
     </a>
 
@@ -136,7 +136,8 @@
         <br />
         <a href="home.html" class="nav-button">Home</a>
         <a href="shop.php" class="nav-button">Shop</a>
-        <a href="carvalcalc.html" class="nav-button">Value Calculator</a>
+        <a href="tinder.html" class="nav-button">Tinder</a>
+        <a href="carvalue.php" class="nav-button">Car Value Calculator</a>
         <a href="about.html" class="nav-button">About Us</a>
         <a href="help.html" class="nav-button">Help</a>
         <a href="reviews.html" class="nav-button">Reviews</a>
@@ -157,7 +158,8 @@
         <br /><br /><br /><br />
         <a href="home.html" class="nav-button-hamburger-closed">Home</a>
         <a href="shop.php" class="nav-button-hamburger-closed">Shop</a>
-        <a href="carvalcalc.html" class="nav-button-hamburger-closed">Value Calculator</a>
+        <a href="tinder.html" class="nav-button-hamburger-closed">Tinder</a>
+        <a href="carvalue.php" class="nav-button-hamburger-closed">Car Value Calculator</a>
         <a href="about.html" class="nav-button-hamburger-closed">About Us</a>
         <a href="help.html" class="nav-button-hamburger-closed">Help</a>
         <a href="reviews.html" class="nav-button-hamburger-closed">Reviews</a>
