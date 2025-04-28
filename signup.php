@@ -16,6 +16,7 @@ if ($conn->connect_error) {
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $conn->real_escape_string($_POST['username']);
+    $email = $conn->real_escape_string($_POST['email']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // hash the password
 
     // Handle profile picture upload
@@ -30,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $target_file)) {
         // Insert new user into database
-        $sql = "INSERT INTO Users (Username, Password, profilepic) 
-                VALUES ('$username', '$password', '$target_file')";
+        $sql = "INSERT INTO Users (Username, Email, Password, profilepic) 
+                VALUES ('$username', '$email', '$password', '$target_file')";
 
         if ($conn->query($sql) === TRUE) {
             echo "Account created successfully!";
