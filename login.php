@@ -2,9 +2,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-session_start(); // start a PHP session
+session_start(); 
 
-// Database connection settings
+// database connection
 $server = "localhost";
 $userid = "umegccruvfeiy";
 $pw = "thisisapass";
@@ -21,27 +21,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $conn->real_escape_string($_POST['username']);
     $password = $_POST['password'];
 
-    // !!!!! Replace 'your_table_name' with your actual table name
     $sql = "SELECT * FROM Users WHERE Username = '$username'";
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
-        // Verify password
         if (password_verify($password, $row['Password'])) {
-            // Password is correct
+        
             $_SESSION['username'] = $username;
-            $_SESSION['profilepic'] = $row['profilepic']; // save profile pic path
+            $_SESSION['profilepic'] = $row['profilepic'];
 
-            echo "Login successful!<br>";
-            echo "<img src='" . $row['profilepic'] . "' width='100'><br>";
-            echo "Welcome, " . htmlspecialchars($username) . "!";
+            
+            header("Location: dashboard.php");
+            exit();
         } else {
-            echo "Invalid password.";
+           
+            header("Location: login.html?error=invalid_password");
+            exit();
         }
     } else {
-        echo "User not found.";
+        // User not found
+        header("Location: login.html?error=user_not_found");
+        exit();
     }
 }
 
