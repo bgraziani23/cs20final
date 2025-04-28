@@ -121,6 +121,16 @@
    border-radius: 10px;
 }
 
+#page-content.blurred {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+}
+
+/* Optional: modal itself not blurred */
+.modal {
+    z-index: 1000;
+}
+
 .close-button {
    color: #aaa;
    float: right;
@@ -163,6 +173,7 @@
 
 
 <body>
+    <div id="page-content">
     <a href="home.html" class="logo-container">
         <img src="images/logo.png">
     </a>
@@ -218,6 +229,24 @@
 
 </div>
 </div>
+</div>
+
+<footer class="footer">
+    <a href='contact.html'>Contact</a>
+    <a>&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+    <a href='about.html'>About Us</a>
+    <a>&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+    <a href='shop.php'>Shop</a>
+    <br />
+    &copy; 2025 Second Spin&trade;&nbsp;&nbsp;|&nbsp;&nbsp;All Rights Reserved
+</footer>
+
+
+
+
+
+
+<!-- END OF PAGE CONTENT -->
 </div>
 
     
@@ -327,11 +356,14 @@ card.addEventListener('touchend', () => {
             document.getElementById('modal-description').innerText = car.Description;
             document.getElementById('modal-seller').innerText = car.Username;
             modal.style.display = "block";
+            document.getElementById('page-content').classList.add('blurred');
+
         }
 
         // Function to close the modal
         function closeModal() {
             modal.style.display = "none";
+            document.getElementById('page-content').classList.remove('blurred');
         }
 
         // Close the modal if the user clicks outside of it
@@ -354,17 +386,6 @@ card.addEventListener('touchend', () => {
         });
     </script>
     
-    
-
-    <footer class="footer">
-        <a href='contact.html'>Contact</a>
-        <a>&nbsp;&nbsp;|&nbsp;&nbsp;</a>
-        <a href='about.html'>About Us</a>
-        <a>&nbsp;&nbsp;|&nbsp;&nbsp;</a>
-        <a href='shop.php'>Shop</a>
-        <br />
-        &copy; 2025 Second Spin&trade;&nbsp;&nbsp;|&nbsp;&nbsp;All Rights Reserved
-    </footer>
 
 
 
