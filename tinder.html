@@ -100,7 +100,7 @@
         cursor: grabbing;
     }
 
-    .modal {
+    .tinder-box {
    display: none;
    position: fixed;
    z-index: 1;
@@ -112,7 +112,7 @@
    background-color: rgba(0,0,0,0.4);
 }
 
-.modal-content {
+.tinder-content {
    background-color: #fefefe;
    margin: 15% auto;
    padding: 20px;
@@ -126,8 +126,7 @@
     transition: filter 0.3s ease;
 }
 
-/* Optional: modal itself not blurred */
-.modal {
+.tinder {
     z-index: 1000;
 }
 
@@ -255,16 +254,16 @@
     <button id="load-more-cars" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px;">Show More Cars</button>
   </div>
 
-  <div id="modal" class="modal">
-    <div class="modal-content">
-        <span class="close-button" onclick="closeModal()">&times;</span>
-        <img id="modal-car-image" src="" alt="Car Image">
-        <h2 id="modal-car-title"></h2>
-        <p>Price: <span id="modal-price"></span></p>
-        <p>Miles: <span id="modal-miles"></span></p>
-        <p>Location: <span id="modal-location"></span></p>
-        <p>Description: <span id="modal-description"></span></p>
-        <p>Seller: <span id="modal-seller"></span></p>
+  <div id="tinder" class="tinder">
+    <div class="tinder-content">
+        <span class="close-button" onclick="closeTinder()">&times;</span>
+        <img id="tinder-car-image" src="" alt="Car Image">
+        <h2 id="tinder-car-title"></h2>
+        <p>Price: <span id="tinder-price"></span></p>
+        <p>Miles: <span id="tinder-miles"></span></p>
+        <p>Location: <span id="tinder-location"></span></p>
+        <p>Description: <span id="tinder-description"></span></p>
+        <p>Seller: <span id="tinder-seller"></span></p>
     </div>
  </div>
  
@@ -274,8 +273,8 @@
     let cars = [];
     let currentCarIndex = 0;
     const card = document.getElementById('car-card');
-    let startX = 0;
-    let currentX = 0;
+    let initialPos = 0;
+    let currentPos = 0;
     let isDragging = false;
     
     // Function to display a car
@@ -295,7 +294,7 @@
     
     // Function to handle swipe gestures
     function handleGesture() {
-        const deltaX = currentX - startX;
+        const deltaX = currentPos - initialPos;
         if (Math.abs(deltaX) > 100) {
             const direction = deltaX > 0 ? 'right' : 'left';
             animateSwipe(direction);
@@ -322,54 +321,53 @@
     }
 
     card.addEventListener('click', () => {
-    showModal(currentCarIndex);
+    showtinder(currentCarIndex);
     });
     
     card.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
+    initialPos = e.touches[0].clientX;
     isDragging = false;
 }, { passive: true });
 
 card.addEventListener('touchmove', (e) => {
-    currentX = e.touches[0].clientX;
-    if (Math.abs(currentX - startX) > 10) {
+    currentPos = e.touches[0].clientX;
+    if (Math.abs(currentPos - initialPos) > 10) {
         isDragging = true;
     }
 }, { passive: true });
 
 card.addEventListener('touchend', () => {
     if (!isDragging) {
-        showModal(currentCarIndex);
+        showTinder(currentCarIndex);
     } else {
         handleGesture();
     }
 });
 
-        // Function to show the modal with car details
-        function showModal(index) {
+        function showTiner(index) {
             const car = cars[index];
-            document.getElementById('modal-car-image').src = car.Image;
-            document.getElementById('modal-car-title').innerText = car.Model;
-            document.getElementById('modal-price').innerText = car.Price;
-            document.getElementById('modal-miles').innerText = car.Miles;
-            document.getElementById('modal-location').innerText = `${car.City}, ${car.State}`;
-            document.getElementById('modal-description').innerText = car.Description;
-            document.getElementById('modal-seller').innerText = car.Username;
-            modal.style.display = "block";
+            document.getElementById('tinder-car-image').src = car.Image;
+            document.getElementById('tinder-car-title').innerText = car.Model;
+            document.getElementById('tinder-price').innerText = car.Price;
+            document.getElementById('tinder-miles').innerText = car.Miles;
+            document.getElementById('tinder-location').innerText = `${car.City}, ${car.State}`;
+            document.getElementById('tinder-description').innerText = car.Description;
+            document.getElementById('tinder-seller').innerText = car.Username;
+            tinder.style.display = "block";
             document.getElementById('page-content').classList.add('blurred');
 
         }
 
-        // Function to close the modal
-        function closeModal() {
-            modal.style.display = "none";
+        // Function to close the tinder box
+        function closeTinder() {
+            tinder.style.display = "none";
             document.getElementById('page-content').classList.remove('blurred');
         }
 
-        // Close the modal if the user clicks outside of it
+        // Close the tinder box if the user clicks outside of it
         window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
+            if (event.target == tinder) {
+                closeTinder();
             }
         }
 
