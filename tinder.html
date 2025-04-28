@@ -100,6 +100,42 @@
         cursor: grabbing;
     }
 
+    .modal {
+   display: none;
+   position: fixed;
+   z-index: 1;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   overflow: auto;
+   background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+   background-color: #fefefe;
+   margin: 15% auto;
+   padding: 20px;
+   border: 1px solid #888;
+   width: 80%;
+   border-radius: 10px;
+}
+
+.close-button {
+   color: #aaa;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+   color: black;
+   text-decoration: none;
+   cursor: pointer;
+}
+
+
     @media (max-width: 1000px) {
         .about-container {
             flex-direction: column;
@@ -190,6 +226,20 @@
     <button id="load-more-cars" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px;">Show More Cars</button>
   </div>
 
+  <div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+        <img id="modal-car-image" src="" alt="Car Image">
+        <h2 id="modal-car-title"></h2>
+        <p>Price: <span id="modal-price"></span></p>
+        <p>Miles: <span id="modal-miles"></span></p>
+        <p>Location: <span id="modal-location"></span></p>
+        <p>Description: <span id="modal-description"></span></p>
+        <p>Seller: <span id="modal-seller"></span></p>
+    </div>
+ </div>
+ 
+
 
   <script>
     let cars = [];
@@ -241,39 +291,30 @@
     function swipe(direction) {
         animateSwipe(direction);
     }
-    
-    // Add touch event listeners
-    card.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        isDragging = true;
-        card.classList.add('dragging');
-    }, { passive: true });
-    
-    card.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        currentX = e.touches[0].clientX;
-        const deltaX = currentX - startX;
-        card.style.transform = `translateX(${deltaX}px)`;
-    }, { passive: true });
-    
-    card.addEventListener('touchend', () => {
-        isDragging = false;
-        card.classList.remove('dragging');
-        const deltaX = currentX - startX;
-        if (Math.abs(deltaX) > 100) {
-            const direction = deltaX > 0 ? 'right' : 'left';
-            card.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
-            card.style.transform = `translateX(${deltaX > 0 ? 1000 : -1000}px)`;
-            card.style.opacity = '0';
-            setTimeout(() => {
-                currentCarIndex++;
-                showCar(currentCarIndex);
-            }, 500);
-        } else {
-            card.style.transition = 'transform 0.3s ease';
-            card.style.transform = 'translateX(0px)';
-        }
+
+    card.addEventListener('click', () => {
+    showModal(currentCarIndex);
     });
+    
+    card.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = false;
+}, { passive: true });
+
+card.addEventListener('touchmove', (e) => {
+    currentX = e.touches[0].clientX;
+    if (Math.abs(currentX - startX) > 10) {
+        isDragging = true;
+    }
+}, { passive: true });
+
+card.addEventListener('touchend', () => {
+    if (!isDragging) {
+        showModal(currentCarIndex);
+    } else {
+        handleGesture();
+    }
+});
 
         // Function to show the modal with car details
         function showModal(index) {
