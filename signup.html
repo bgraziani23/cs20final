@@ -3,20 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Cars, Used Cars, Cheap, Dealership, Selling">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: "Bebas Neue", sans-serif;
+            letter-spacing: 2px;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            font-size: 36px;
+            padding-top: 60px;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 100px;
+        }
+
+        form div {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            margin: 15px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="file"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 5px;
+            width: 100%;
+        }
+
+        input:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        .submit-button {
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .submit-button input {
+            font-family: "Bebas Neue";
+            letter-spacing: 2px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 18px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            width: 100%;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .submit-button input:hover {
+            background-color: #0056b3;
+        }
+
+        .nav-container {
+            text-align: center;
+            background: #f8f9fa;
+            padding: 10px 0;
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-button {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007BFF;
+            font-size: 20px;
+            transition: color 0.2s;
+        }
+
+        .nav-button:hover {
+            color: #0056b3;
+        }
+
+        footer.footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #666;
+            background: #f8f9fa;
+            margin-top: 50px;
+        }
+
+        footer.footer a {
+            color: #007BFF;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        footer.footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h2>Create Account</h2>
-    <form action="signup.php" method="POST" enctype="multipart/form-data">
-        <label>Username:</label><br>
-        <input type="text" name="username" required><br><br>
 
-        <label>Password:</label><br>
-        <input type="password" name="password" required><br><br>
+    <!-- Nav Bar -->
+    <div class="nav-container">
+        <a href="home.html" class="nav-button">Home</a>
+        <a href="shop.php" class="nav-button">Shop</a>
+        <a href="tinder.html" class="nav-button">Tinder</a>
+        <a href="carvalue.php" class="nav-button">Car Value Calculator</a>
+        <a href="about.html" class="nav-button">About Us</a>
+        <a href="help.html" class="nav-button">Help</a>
+        <a href="reviews.html" class="nav-button">Reviews</a>
+        <a href="contact.html" class="nav-button">Contact Us</a>
+    </div>
 
-        <label>Profile Picture:</label><br>
-        <input type="file" name="profile_pic" accept="image/*" required><br><br>
+    <!-- Page Content -->
+    <h1>Create Account</h1>
+    <form action="signup.php" method="POST" enctype="multipart/form-data" id="create-account-form">
+        <div>
+            <label>Username:</label>
+            <input type="text" name="username" required>
+        </div>
 
-        <input type="submit" value="Create Account">
+        <div>
+            <label>Email Address:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div>
+            <label>Confirm Email Address:</label>
+            <input type="email" id="confirm-email" name="confirm_email" required>
+        </div>
+
+        <div>
+            <label>Password:</label>
+            <input type="password" name="password" required>
+        </div>
+
+        <div>
+            <label>Profile Picture:</label>
+            <input type="file" name="profile_pic" accept="image/*" required>
+        </div>
+
+        <div class="submit-button">
+            <input type="submit" value="Create Account">
+        </div>
     </form>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <a href='contact.html'>Contact</a>
+        <a>|</a>
+        <a href='about.html'>About Us</a>
+        <a>|</a>
+        <a href='shop.php'>Shop</a>
+        <br />
+        &copy; 2025 Second Spin™ | All Rights Reserved
+    </footer>
+
+    <!-- JavaScript to check email match -->
+    <script>
+        document.getElementById('create-account-form').addEventListener('submit', function(event) {
+            var email = document.getElementById('email').value;
+            var confirmEmail = document.getElementById('confirm-email').value;
+            if (email !== confirmEmail) {
+                alert('Emails must match.');
+                event.preventDefault(); // Stop form from submitting
+            }
+        });
+    </script>
+
 </body>
 </html>
