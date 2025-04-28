@@ -222,13 +222,10 @@
             <p id="car-details"></p>
             <div style="margin-top: 20px;">
                 <button onclick="swipe('left')" style="padding: 10px 20px; margin-right: 10px; background-color: #ff4d4d; color: white; border: none; border-radius: 5px;">&#10005; Dislike</button>
-                <button onclick="swipe('right')" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px;">&#10003; Like</button>
-    
-    
-
-</div>
-</div>
-</div>
+                <a id="view-listing-btn" href="#" target="_blank" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block;">View Listing</a>
+            </div>
+        </div>
+    </div>
 
 <footer class="footer">
     <a href='contact.html'>Contact</a>
@@ -288,6 +285,7 @@
         document.getElementById('car-image').src = car.Image;
         document.getElementById('car-title').innerText = `${car.Model}`;
         document.getElementById('car-details').innerText = `Price: ${car.Price}, Miles: ${car.Miles}, Location: ${car.City}, ${car.State}`;
+        document.getElementById('view-listing-btn').href = 'car_details.php?id=' + car.CarID;
         card.style.transform = 'translateX(0)';
         card.style.opacity = '1';
     }
@@ -310,6 +308,10 @@
         card.style.transform = `translateX(${direction === 'right' ? 1000 : -1000}px)`;
         card.style.opacity = '0';
         setTimeout(() => {
+            // If swiped right, open the listing in a new tab
+            if (direction === 'right' && cars[currentCarIndex]) {
+                window.open('car_details.php?id=' + cars[currentCarIndex].CarID, '_blank');
+            }
             currentCarIndex++;
             showCar(currentCarIndex);
         }, 300);
