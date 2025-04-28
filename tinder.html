@@ -100,6 +100,42 @@
         cursor: grabbing;
     }
 
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        border-radius: 10px;
+    }
+
+    .close-button {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close-button:hover,
+    .close-button:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
     @media (max-width: 1000px) {
         .about-container {
             flex-direction: column;
@@ -188,14 +224,31 @@
     <button id="load-more-cars" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px;">Show More Cars</button>
   </div>
 
+  <div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+        <img id="modal-car-image" src="" alt="Car Image">
+        <h2 id="modal-car-title"></h2>
+        <p>Price: <span id="modal-price"></span></p>
+        <p>Miles: <span id="modal-miles"></span></p>
+        <p>Location: <span id="modal-location"></span></p>
+        <p>Description: <span id="modal-description"></span></p>
+        <p>Seller: <span id="modal-seller"></span></p>
+    </div>
+ </div>
+ 
+  
+
 
   <script>
     let cars = [];
     let currentCarIndex = 0;
     const card = document.getElementById('car-card');
+    const modal = document.getElementById('car-modal'); // Assuming you have a modal with id="car-modal"
     let startX = 0;
     let currentX = 0;
     let isDragging = false;
+    let dragThreshold = 10; // small movement allowed for tap
     
     // Function to display a car
     function showCar(index) {
@@ -207,21 +260,9 @@
         const car = cars[index];
         document.getElementById('car-image').src = car.Image;
         document.getElementById('car-title').innerText = `${car.Model}`;
-        document.getElementById('car-details').innerText = `Price: ${car.Price}, Miles: ${car.Miles}, Location: ${car.City}, ${car.State}`;
+        document.getElementById('car-details').innerText = `Tap for more info`;
         card.style.transform = 'translateX(0)';
         card.style.opacity = '1';
-    }
-    
-    // Function to handle swipe gestures
-    function handleGesture() {
-        const deltaX = currentX - startX;
-        if (Math.abs(deltaX) > 100) {
-            const direction = deltaX > 0 ? 'right' : 'left';
-            animateSwipe(direction);
-        } else {
-            card.style.transition = 'transform 0.3s ease';
-            card.style.transform = 'translateX(0px)';
-        }
     }
     
     // Function to animate swipe
@@ -235,12 +276,12 @@
         }, 300);
     }
     
-    // Function to handle button clicks
+    // Function to handle button swipes
     function swipe(direction) {
         animateSwipe(direction);
     }
     
-    // Add touch event listeners
+    // Touch event listeners
     card.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
         isDragging = true;
@@ -254,52 +295,55 @@
         card.style.transform = `translateX(${deltaX}px)`;
     }, { passive: true });
     
-    card.addEventListener('touchend', () => {
+    card.addEventListener('touchend', (e) => {
         isDragging = false;
         card.classList.remove('dragging');
         const deltaX = currentX - startX;
+    
         if (Math.abs(deltaX) > 100) {
             const direction = deltaX > 0 ? 'right' : 'left';
-            card.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
-            card.style.transform = `translateX(${deltaX > 0 ? 1000 : -1000}px)`;
-            card.style.opacity = '0';
-            setTimeout(() => {
-                currentCarIndex++;
-                showCar(currentCarIndex);
-            }, 500);
+            animateSwipe(direction);
+        } else if (Math.abs(deltaX) < dragThreshold) {
+            // Small movement -> treat as tap
+            showModal(currentCarIndex);
         } else {
+            // Not enough swipe, reset
             card.style.transition = 'transform 0.3s ease';
             card.style.transform = 'translateX(0px)';
         }
     });
-
-        // Function to show the modal with car details
-        function showModal(index) {
-            const car = cars[index];
-            document.getElementById('modal-car-image').src = car.Image;
-            document.getElementById('modal-car-title').innerText = car.Model;
-            document.getElementById('modal-price').innerText = car.Price;
-            document.getElementById('modal-miles').innerText = car.Miles;
-            document.getElementById('modal-location').innerText = `${car.City}, ${car.State}`;
-            document.getElementById('modal-description').innerText = car.Description;
-            document.getElementById('modal-seller').innerText = car.Username;
-            modal.style.display = "block";
-        }
-
-        // Function to close the modal
-        function closeModal() {
-            modal.style.display = "none";
-        }
-
-        // Close the modal if the user clicks outside of it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-
     
-    // Fetch car data from the PHP script
+    // Also allow click with mouse
+    card.addEventListener('click', () => {
+        showModal(currentCarIndex);
+    });
+    
+    // Function to show modal with car details
+    function showModal(index) {
+        const car = cars[index];
+        document.getElementById('modal-car-image').src = car.Image;
+        document.getElementById('modal-car-title').innerText = car.Model;
+        document.getElementById('modal-price').innerText = `Price: ${car.Price}`;
+        document.getElementById('modal-miles').innerText = `Miles: ${car.Miles}`;
+        document.getElementById('modal-location').innerText = `${car.City}, ${car.State}`;
+        document.getElementById('modal-description').innerText = car.Description;
+        document.getElementById('modal-seller').innerText = `Seller: ${car.Username}`;
+        modal.style.display = "block";
+    }
+    
+    // Function to close the modal
+    function closeModal() {
+        modal.style.display = "none";
+    }
+    
+    // Close modal if clicking outside
+    window.addEventListener('click', (event) => {
+        if (event.target == modal) {
+            closeModal();
+        }
+    });
+    
+    // Fetch cars from server
     fetch('get_cars.php')
         .then(response => response.json())
         .then(data => {
@@ -310,6 +354,7 @@
             console.error('Error fetching car data:', error);
         });
     </script>
+    
     
     
 
