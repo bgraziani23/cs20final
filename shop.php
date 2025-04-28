@@ -280,6 +280,7 @@
             <p id="box-mileage"></p>
             <p id="box-location"></p>
             <p id="box-seller"></p>
+            <a id="full-listing-link" href="#" class="full-listing-button" style="display: inline-block; padding: 10px 20px; background: #4CAF50; color: white; text-decoration: none; border-radius: 5px; margin-top: 20px;">View Full Listing</a>
         </div>
     </div>
 
@@ -328,6 +329,9 @@
                 document.getElementById('box-mileage').textContent = new Intl.NumberFormat().format(data.Miles) + ' miles';
                 document.getElementById('box-location').textContent = data.City + ', ' + data.State;
                 document.getElementById('box-seller').textContent = 'Seller: ' + data.Username;
+                
+                // Update the full listing link
+                document.getElementById('full-listing-link').href = 'car_details.php?id=' + carId;
                 
                 document.getElementById('car-box').style.display = 'flex';
             });
