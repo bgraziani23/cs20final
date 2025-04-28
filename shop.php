@@ -183,8 +183,6 @@
     <div id="car-grid" class="car-grid">
         <?php
         // Enable error reporting
-        error_reporting(E_ALL);
-        ini_set('display_errors', 1);
 
         // Database connection
         $server = "localhost";
@@ -306,9 +304,10 @@
             searchForm.submit();
         }
 
-        // Add event listener for search input
-        searchInput.addEventListener('input', function(e) {
-            if (e.target.value.length >= 2 || e.target.value.length === 0) {
+        // Add event listener for search input - only on Enter key
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
                 submitForm();
             }
         });

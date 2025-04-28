@@ -231,7 +231,7 @@ if (isset($_GET['plate']) && isset($_GET['state'])) {
                             setTimeout(function() {
                               $("#value").fadeIn(1000, function() {
                                 // Hide the "Searching..." text after all results have been displayed
-                                $(".searchingText").fadeOut(500);
+                                $(".searchingText").hide();
                               });
                             }, 1000);
                           });
@@ -249,7 +249,12 @@ if (isset($_GET['plate']) && isset($_GET['state'])) {
         }
 
     } else {
-        echo "VIN not found in the response.";
+        echo '<br />';
+        echo '<div style="text-align: center; font-size: 24px;">';
+        echo 'License Plate not Recognized.';
+        echo '<br />';
+        echo 'Please double check the plate and state before resubmitting.';
+        echo '</div>';
     }
 }
 ?>
