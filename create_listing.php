@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Handle image upload
     $target_dir = "images/";
     $file_extension = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
-    $image_filename = "car_" . $newCarID . "." . $file_extension;
+    $image_filename = "images/car_" . $newCarID . "." . $file_extension;
     $target_file = $target_dir . $image_filename;
     
     // Check if image file is valid
