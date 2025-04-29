@@ -29,12 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newCarID = $row['maxID'] + 1;
 
     // Get form data
-    $model = $conn->real_escape_string($_POST['model']);
+    $model = $conn->$_POST['model'];
     $price = floatval($_POST['price']);
     $miles = intval($_POST['miles']);
-    $state = $conn->real_escape_string(strtoupper($_POST['state']));
-    $city = $conn->real_escape_string($_POST['city']);
-    $description = $conn->real_escape_string($_POST['description']);
+    $state = $conn->strtoupper($_POST['state']);
+    $city = $conn->$_POST['city'];
+    $description = $conn->$_POST['description'];
     $username = $_SESSION['username'];
     
     // Handle image upload

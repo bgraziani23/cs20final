@@ -6,6 +6,26 @@ let initialPos = 0;
 let currentPos = 0;
 let isDragging = false;
 
+// Utility functions
+function setElementVisibility(elementId, display) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.style.display = display;
+    }
+}
+
+function navigateToCarDetails(carId) {
+    window.location.href = 'car_details.php?id=' + carId;
+}
+
+function resetCard() {
+    if (card) {
+        card.style.transition = 'transform 0.3s ease';
+        card.style.transform = 'translateX(0)';
+        card.style.opacity = '1';
+    }
+}
+
 // Initialize card event listeners
 function setupCardEventListeners() {
     card = document.getElementById('car-card');
@@ -47,25 +67,19 @@ function handleTouchEnd() {
         if (Math.abs(deltaX) > 100) {
             const direction = deltaX > 0 ? 'right' : 'left';
             if (direction === 'right' && cars[currentCarIndex]) {
-                const carId = cars[currentCarIndex].CarID;
-                window.location.href = 'car_details.php?id=' + carId;
+                navigateToCarDetails(cars[currentCarIndex].CarID);
                 return;
             }
             animateSwipe(direction);
         } else {
-            resetCardPosition();
+            resetCard();
         }
     } else {
-        resetCardPosition();
+        resetCard();
     }
 }
 
 // Card animation functions
-function resetCardPosition() {
-    card.style.transition = 'transform 0.3s ease';
-    card.style.transform = 'translateX(0)';
-}
-
 function animateSwipe(direction) {
     card.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
     card.style.transform = `translateX(${direction === 'right' ? 1000 : -1000}px)`;
@@ -79,25 +93,21 @@ function animateSwipe(direction) {
 // Car display functions
 function showCar(index) {
     if (index >= cars.length) {
-        document.getElementById('car-swipe-container').style.display = 'none';
-        document.getElementById('no-cars-message').style.display = 'flex';
+        setElementVisibility('car-swipe-container', 'none');
+        setElementVisibility('no-cars-message', 'flex');
         return;
     }
     const car = cars[index];
     document.getElementById('car-image').src = car.Image;
     document.getElementById('car-title').innerText = `${car.Model}`;
     document.getElementById('car-details').innerText = `Price: $${car.Price}, Miles: ${car.Miles}, Location: ${car.City}, ${car.State}`;
-    if (card) {
-        card.style.transform = 'translateX(0)';
-        card.style.opacity = '1';
-    }
+    resetCard();
 }
 
 // Swipe functions
 function swipe(direction) {
     if (direction === 'right' && cars[currentCarIndex]) {
-        const carId = cars[currentCarIndex].CarID;
-        window.location.href = 'car_details.php?id=' + carId;
+        navigateToCarDetails(cars[currentCarIndex].CarID);
         return;
     }
     animateSwipe(direction);
@@ -105,31 +115,27 @@ function swipe(direction) {
 
 // Initial choice functions
 function startSwipingAll() {
-    document.getElementById('initial-choice-overlay').style.display = 'none';
+    setElementVisibility('initial-choice-overlay', 'none');
+    setElementVisibility('car-swipe-container', 'block');
+    setElementVisibility('no-cars-message', 'none');
     document.getElementById('page-content').classList.remove('blurred');
-    document.getElementById('car-swipe-container').style.display = 'block';
-    document.getElementById('no-cars-message').style.display = 'none';
     
-    fetch('get_cars.php')
+    // Use get_filtered_cars.php with empty parameters to get all cars
+    fetch('get_filtered_cars.php')
         .then(response => response.json())
         .then(data => {
             cars = data;
             showCar(currentCarIndex);
             setTimeout(setupCardEventListeners, 100);
         })
-        .catch(error => {
-            console.error('Error fetching car data:', error);
-        });
 }
 
 // Preferences functions
 function showPreferences() {
-    document.getElementById('initial-choice-overlay').style.display = 'none';
-    document.getElementById('car-swipe-container').style.display = 'none';
-    document.getElementById('no-cars-message').style.display = 'none';
-    
-    const preferencesOverlay = document.getElementById('preferences-overlay');
-    preferencesOverlay.style.display = 'block';
+    setElementVisibility('initial-choice-overlay', 'none');
+    setElementVisibility('car-swipe-container', 'none');
+    setElementVisibility('no-cars-message', 'none');
+    setElementVisibility('preferences-overlay', 'block');
 }
 
 function submitPreferences(event) {
@@ -158,21 +164,17 @@ function submitPreferences(event) {
             }
             cars = data;
             if (cars.length > 0) {
-                document.getElementById('preferences-overlay').style.display = 'none';
-                document.getElementById('car-swipe-container').style.display = 'block';
-                document.getElementById('no-cars-message').style.display = 'none';
+                setElementVisibility('preferences-overlay', 'none');
+                setElementVisibility('car-swipe-container', 'block');
+                setElementVisibility('no-cars-message', 'none');
                 document.getElementById('page-content').classList.remove('blurred');
                 currentCarIndex = 0;
                 showCar(currentCarIndex);
                 setTimeout(setupCardEventListeners, 100);
             } else {
-                document.getElementById('preferences-overlay').style.display = 'none';
-                document.getElementById('no-cars-message').style.display = 'flex';
+                setElementVisibility('preferences-overlay', 'none');
+                setElementVisibility('no-cars-message', 'flex');
                 alert('No cars found matching your preferences. Please try different criteria.');
             }
         })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error loading cars. Please try again.');
-        });
 } 
