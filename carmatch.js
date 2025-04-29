@@ -18,11 +18,6 @@ function navigateToCarDetails(carId) {
     window.location.href = 'car_details.php?id=' + carId;
 }
 
-function handleError(error, message) {
-    console.error('Error:', error);
-    alert(message);
-}
-
 function resetCard() {
     if (card) {
         card.style.transition = 'transform 0.3s ease';
@@ -125,14 +120,14 @@ function startSwipingAll() {
     setElementVisibility('no-cars-message', 'none');
     document.getElementById('page-content').classList.remove('blurred');
     
-    fetch('get_cars.php')
+    // Use get_filtered_cars.php with empty parameters to get all cars
+    fetch('get_filtered_cars.php')
         .then(response => response.json())
         .then(data => {
             cars = data;
             showCar(currentCarIndex);
             setTimeout(setupCardEventListeners, 100);
         })
-        .catch(error => handleError(error, 'Error fetching car data'));
 }
 
 // Preferences functions
@@ -182,5 +177,4 @@ function submitPreferences(event) {
                 alert('No cars found matching your preferences. Please try different criteria.');
             }
         })
-        .catch(error => handleError(error, 'Error loading cars. Please try again.'));
 } 
