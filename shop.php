@@ -36,28 +36,26 @@
         align-items: center;
     }
 
-    .search-input {
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        width: 300px;
-        font-size: 16px;
-    }
+        .search-input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 300px;
+        }
 
-    .filter-select {
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-    }
+        .filter-select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-    .car-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
-        padding: 20px;
-    }
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
 
     .car-card {
         border: 1px solid #ddd;
@@ -74,11 +72,11 @@
         transform: scale(1.05);
     }
 
-    .car-card img {
-        width: 100%;
-        height: 50%;
-        object-fit: cover;
-    }
+        .car-card img {
+            width: 100%;
+            height: 50%;
+            object-fit: cover;
+        }
 
     .car-card h2 {
         margin: 10px 0;
@@ -107,14 +105,35 @@
         align-items: center;
     }
 
-    .car-box-content {
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        max-width: 500px;
-        text-align: center;
-        position: relative;
-    }
+        .car-box-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+        }
+
+        .car-box-content img {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .full-listing-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .full-listing-button:hover {
+            background: #45a049;
+        }
 
     .close-btn {
         position: absolute;
@@ -182,8 +201,6 @@
 
     <div id="car-grid" class="car-grid">
         <?php
-        // Enable error reporting
-
         // Database connection
         $server = "localhost";
         $userid = "umegccruvfeiy";
@@ -199,57 +216,37 @@
         }
 
         // Get search and filter parameters
-        $search = isset($_GET['search']) ? trim($_GET['search']) : '';
-        $filter = isset($_GET['filter']) ? $_GET['filter'] : 'newest';
+        if (isset($_GET['search'])) {
+            $search = $_GET['search'];
+        } else {
+            $search = '';
+        }
+       
+        if (isset($_GET['filter'])) {
+            $filter = $_GET['filter'];
+        } else {
+            $filter = 'newest';
+        }
 
         // Build the SQL query
         $sql = "SELECT * FROM Cars";
-        $params = [];
-        $types = "";
-
-        // Only add WHERE clause if there's a search term
+        
+        // Add search condition if search term exists
         if (!empty($search)) {
-            $sql .= " WHERE Model LIKE ? OR Description LIKE ?";
             $searchTerm = "%$search%";
-            $params[] = $searchTerm;
-            $params[] = $searchTerm;
-            $types .= "ss";
+            $sql .= " WHERE Model LIKE '$searchTerm' OR Description LIKE '$searchTerm'";
         }
 
         // Add sorting
-        switch ($filter) {
-            case 'price_asc':
-                $sql .= " ORDER BY Price ASC";
-                break;
-            case 'price_desc':
-                $sql .= " ORDER BY Price DESC";
-                break;
-            default: // newest
-                $sql .= " ORDER BY CarID DESC";
-                break;
+        if ($filter === 'price_asc') {
+            $sql .= " ORDER BY Price ASC";
+        } else if ($filter === 'price_desc') {
+            $sql .= " ORDER BY Price DESC";
+        } else {
+            $sql .= " ORDER BY CarID DESC";
         }
 
-        // Debug information
-        echo "<!-- SQL Query: " . $sql . " -->";
-        echo "<!-- Search term: " . $search . " -->";
-        echo "<!-- Filter: " . $filter . " -->";
-
-        // Prepare and execute the query
-        $stmt = $conn->prepare($sql);
-        if (!$stmt) {
-            die("Prepare failed: " . $conn->error);
-        }
-
-        if (!empty($params)) {
-            $stmt->bind_param($types, ...$params);
-        }
-
-        if (!$stmt->execute()) {
-            die("Execute failed: " . $stmt->error);
-        }
-
-        $result = $stmt->get_result();
-        echo "<!-- Number of rows: " . $result->num_rows . " -->";
+        $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
@@ -265,7 +262,6 @@
             echo "No cars found";
         }
 
-        $stmt->close();
         $conn->close();
         ?>
     </div>
@@ -280,7 +276,7 @@
             <p id="box-mileage"></p>
             <p id="box-location"></p>
             <p id="box-seller"></p>
-            <a id="full-listing-link" href="#" class="full-listing-button" style="display: inline-block; padding: 10px 20px; background: #4CAF50; color: white; text-decoration: none; border-radius: 5px; margin-top: 20px;">View Full Listing</a>
+            <a id="full-listing-link" href="#" class="full-listing-button">View Full Listing</a>
         </div>
     </div>
 
@@ -300,39 +296,31 @@
         const filterSelect = document.getElementById('filterSelect');
         const searchForm = document.getElementById('searchForm');
 
-        // Function to submit the form
-        function submitForm() {
-            searchForm.submit();
-        }
-
-        // Add event listener for search input - only on Enter key
         searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
-                submitForm();
+                searchForm.submit();
             }
         });
 
-        // Add event listener for filter select
-        filterSelect.addEventListener('change', submitForm);
+        filterSelect.addEventListener('change', function() {
+            searchForm.submit();
+        });
     });
 
     function showCarDetails(carId) {
-        // Fetch car details from the server
+        // run a fetch function 
         fetch('get_car_details.php?id=' + carId)
             .then(response => response.json())
             .then(data => {
                 document.getElementById('box-image').src = data.Image;
                 document.getElementById('box-description').textContent = data.Model;
-                document.getElementById('box-price').textContent = '$' + new Intl.NumberFormat().format(data.Price);
+                document.getElementById('box-price').textContent = '$' + data.Price;
                 document.getElementById('box-details').textContent = data.Description;
-                document.getElementById('box-mileage').textContent = new Intl.NumberFormat().format(data.Miles) + ' miles';
+                document.getElementById('box-mileage').textContent = data.Miles + ' miles';
                 document.getElementById('box-location').textContent = data.City + ', ' + data.State;
                 document.getElementById('box-seller').textContent = 'Seller: ' + data.Username;
-                
-                // Update the full listing link
                 document.getElementById('full-listing-link').href = 'car_details.php?id=' + carId;
-                
                 document.getElementById('car-box').style.display = 'flex';
             });
     }
@@ -348,6 +336,13 @@
             carBox.style.display = 'none';
         }
     }
+
+    // if press escape, close the car box
+    document.addEventListener('keydown', (event) => {
+        if (event.key === "Escape") {
+            closeCarBox();
+        }
+    });
     </script>
 </body>
 </html> 

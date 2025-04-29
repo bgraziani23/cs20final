@@ -19,7 +19,6 @@
             padding: 20px;
             background: white;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
         .car-header {
@@ -46,7 +45,6 @@
         .car-title {
             font-size: 2.5em;
             margin-bottom: 20px;
-            color: #333;
         }
 
         .car-price {
@@ -55,16 +53,12 @@
             margin-bottom: 20px;
         }
 
-        .car-details {
-            margin-bottom: 30px;
-        }
-
         .car-details p {
             margin: 10px 0;
             font-size: 1.1em;
         }
 
-        .car-description {
+        .car-description, .seller-info {
             margin-top: 30px;
             padding: 20px;
             background: #f9f9f9;
@@ -79,13 +73,6 @@
         .car-description p {
             line-height: 1.6;
             color: #666;
-        }
-
-        .seller-info {
-            margin-top: 30px;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 10px;
         }
 
         .seller-info h3 {
