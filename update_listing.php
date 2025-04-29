@@ -22,12 +22,14 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
     $carId = intval($_POST['carId']);
-    $model = $conn->real_escape_string($_POST['model']);
-    $price = floatval($_POST['price']);
+    $model = $_POST['model'];
+    //ensure numbers from strings become values that can be used in sql
+    $price = intval($_POST['price']);
     $miles = intval($_POST['miles']);
-    $state = $conn->real_escape_string(strtoupper($_POST['state']));
-    $city = $conn->real_escape_string($_POST['city']);
-    $description = $conn->real_escape_string($_POST['description']);
+    // make state uppercase
+    $state = strtoupper($_POST['state']);
+    $city = $_POST['city'];
+    $description = $_POST['description'];
     $username = $_SESSION['username'];
 
     // Verify the car belongs to the user
