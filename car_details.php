@@ -150,17 +150,19 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-        // Set the character set to UTF-8
-        $conn->set_charset("utf8");
 
         // Get car ID from request
-        $carId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+        if (isset($_GET['id'])) {
+            $carId = intval($_GET['id']);
+        } else {
+            $carId = 0;
+        }
 
         if ($carId <= 0) {
             die("Invalid car ID");
         }
 
-        // Prepare the SQL query
+        // SQL query to connect username and car so we can get email of seller
         $sql = "SELECT c.*, u.email 
                 FROM Cars c 
                 JOIN Users u ON c.Username = u.Username 
@@ -176,27 +178,35 @@
             
             <div class="car-header">
                 <div class="car-image">
-                    <img src="<?php echo htmlspecialchars($car['Image']); ?>" alt="<?php echo htmlspecialchars($car['Model']); ?>">
+                    <img src="<?php echo $car['Image']; ?>" alt="<?php echo $car['Model']; ?>">
                 </div>
                 <div class="car-info">
-                    <h1 class="car-title"><?php echo htmlspecialchars($car['Model']); ?></h1>
-                    <div class="car-price">$<?php echo number_format($car['Price']); ?></div>
+                    <h1 class="car-title"><?php echo $car['Model']; ?></h1>
+                    <div class="car-price">$<?php echo $car['Price']; ?></div>
                     <div class="car-details">
-                        <p><strong>Mileage:</strong> <?php echo number_format($car['Miles']); ?> miles</p>
-                        <p><strong>Location:</strong> <?php echo htmlspecialchars($car['City'] . ', ' . $car['State']); ?></p>
-                        <p><strong>Seller:</strong> <?php echo htmlspecialchars($car['Username']); ?></p>
+                        <p><strong>Mileage:</strong> <?php echo $car['Miles']; ?> miles</p>
+                        <p><strong>Location:</strong> <?php echo $car['City'] . ', ' . $car['State']; ?></p>
+                        <p><strong>Seller:</strong> <?php echo $car['Username']; ?></p>
                     </div>
                 </div>
             </div>
 
             <div class="car-description">
                 <h3>Description</h3>
-                <p><?php echo htmlspecialchars($car['Description']); ?></p>
+                <p><?php echo $car['Description']; ?></p>
             </div>
 
             <div class="seller-info">
                 <h3>Contact Seller</h3>
-                <p>Interested in this vehicle? Contact the seller at <a href="mailto:<?php echo htmlspecialchars($car['email'] ?? 'null@null.com'); ?>"><?php echo htmlspecialchars($car['email'] ?? 'null@null.com'); ?></a> to arrange a viewing or ask any questions.</p>
+                <?php
+                // if email is null, set to null@null.com
+                if (isset($car['email'])) {
+                    $email = $car['email'];
+                } else {
+                    $email = 'null@null.com';
+                }
+                ?>
+                <p>Interested in this vehicle? Contact the seller at <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a> to submit an offer or inquire about the vehicle.</p>
             </div>
             <?php
         } else {

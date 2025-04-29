@@ -291,11 +291,13 @@
     </footer>
 
     <script>
+    // if the page is loaded, run this function
     document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('searchInput');
         const filterSelect = document.getElementById('filterSelect');
         const searchForm = document.getElementById('searchForm');
 
+        // if enter is pressed, submit the form
         searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
@@ -303,13 +305,14 @@
             }
         });
 
+        // if filter is changed, submit the form
         filterSelect.addEventListener('change', function() {
             searchForm.submit();
         });
     });
 
     function showCarDetails(carId) {
-        // run a fetch function 
+        // run a fetch function  for the car details once clicked
         fetch('get_car_details.php?id=' + carId)
             .then(response => response.json())
             .then(data => {
