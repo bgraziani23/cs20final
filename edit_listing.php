@@ -1,15 +1,20 @@
 <?php
 session_start();
 
-// Check if user is logged in
+// Check if user is logged in, if not, redirect to login page
 if (!isset($_SESSION['username'])) {
     header("Location: login.html");
     exit();
 }
 
 // Get car ID from request
-$carId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+if (isset($_GET['id'])) {
+    $carId = intval($_GET['id']);
+} else {
+    $carId = 0;
+}
 
+//if there is no car id, redirect to dashboard
 if ($carId <= 0) {
     header("Location: dashboard.php");
     exit();
@@ -27,11 +32,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get car details
+// get username and car details
 $username = $_SESSION['username'];
 $sql = "SELECT * FROM Cars WHERE CarID = $carId AND Username = '$username'";
 $result = $conn->query($sql);
 
+// if car not found, redirect to dashboard
 if ($result->num_rows === 0) {
     header("Location: dashboard.php");
     exit();
@@ -134,12 +140,12 @@ $car = $result->fetch_assoc();
     <div class="edit-container">
         <a href="dashboard.php" class="back-btn">← Back to Dashboard</a>
         <h1>Edit Listing</h1>
-        
+        <!-- formdata to update image -->
         <form action="update_listing.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="carId" value="<?php echo $carId; ?>">
             
             <label>Model:</label>
-            <input type="text" name="model" value="<?php echo htmlspecialchars($car['Model']); ?>" required>
+            <input type="text" name="model" value="<?php echo $car['Model']; ?>" required>
 
             <label>Price:</label>
             <input type="number" name="price" value="<?php echo $car['Price']; ?>" required>
@@ -148,16 +154,16 @@ $car = $result->fetch_assoc();
             <input type="number" name="miles" value="<?php echo $car['Miles']; ?>" required>
 
             <label>State:</label>
-            <input type="text" name="state" value="<?php echo htmlspecialchars($car['State']); ?>" required>
+            <input type="text" name="state" value="<?php echo $car['State']; ?>" required>
 
             <label>City:</label>
-            <input type="text" name="city" value="<?php echo htmlspecialchars($car['City']); ?>" required>
+            <input type="text" name="city" value="<?php echo $car['City']; ?>" required>
 
             <label>Description:</label>
-            <textarea name="description" required><?php echo htmlspecialchars($car['Description']); ?></textarea>
+            <textarea name="description" required><?php echo $car['Description']; ?></textarea>
 
             <label>Current Image:</label>
-            <img src="<?php echo htmlspecialchars($car['Image']); ?>" alt="Current car image" class="current-image">
+            <img src="<?php echo $car['Image']; ?>" alt="Current car image" class="current-image">
             <label>Update Image (optional):</label>
             <input type="file" name="image" accept="image/*">
 
