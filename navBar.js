@@ -5,11 +5,11 @@ function toggleMenu() {
 
     // Toggle between open and closed hamburger items
     if (elemsClosed.length == 0) {
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 8; i++) {
             elemsOpen[0].className = "nav-button-hamburger-closed";
         }
     } else {
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 8; i++) {
             elemsClosed[0].className = "nav-button-hamburger-open";
         }
     }
