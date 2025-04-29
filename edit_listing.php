@@ -163,7 +163,11 @@ $car = $result->fetch_assoc();
             <textarea name="description" required><?php echo $car['Description']; ?></textarea>
 
             <label>Current Image:</label>
+            <br>
             <img src="<?php echo $car['Image']; ?>" alt="Current car image" class="current-image">
+
+            <br />
+
             <label>Update Image (optional):</label>
             <input type="file" name="image" accept="image/*">
 

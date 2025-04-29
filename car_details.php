@@ -137,12 +137,13 @@
 
     <div class="car-details-container">
         <?php
+
+        // db connection
         $server = "localhost";
         $userid = "umegccruvfeiy";
         $pw = "thisisapass";
         $db = "dbimljtmuxm7qy";
 
-        // Create a new MySQLi connection
         $conn = new mysqli($server, $userid, $pw, $db);
 
         // Check the connection
@@ -158,6 +159,7 @@
             $carId = 0;
         }
 
+        // if car id is not valid, fail
         if ($carId <= 0) {
             die("Invalid car ID");
         }
