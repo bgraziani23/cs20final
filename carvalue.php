@@ -133,7 +133,7 @@
 
   <!-- License Plate Form -->
   <div class="container">
-    <h1>Find the Value of Your Car</h1>
+    <h1 style="text-align: center">Find the Value of Your Car</h1>
     <form method="GET">
       <label for="plate">License Plate:</label>
       <input type="text" id="plate" name="plate" value="<?php echo isset($_GET['plate']) ? htmlspecialchars($_GET['plate']) : 'ABC123'; ?>">
