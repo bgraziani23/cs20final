@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 // Database connection settings
 $server = "localhost";
 $userid = "umegccruvfeiy";

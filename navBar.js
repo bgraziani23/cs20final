@@ -2,63 +2,32 @@ function toggleMenu() {
     // Get the elements with the specified class names
     let elemsClosed = document.getElementsByClassName("nav-button-hamburger-closed");
     let elemsOpen = document.getElementsByClassName("nav-button-hamburger-open");
-
-    // Toggle between open and closed hamburger items
+    // If there are no closed elements, they must be open
     if (elemsClosed.length == 0) {
+        // Change each class to the closed class
         for (let i = 0; i < 8; i++) {
             elemsOpen[0].className = "nav-button-hamburger-closed";
         }
-    } else {
+    }
+    // Otherwise, the elements must be closed
+    else {
+        // Change each class to the open class
         for (let i = 0; i < 8; i++) {
             elemsClosed[0].className = "nav-button-hamburger-open";
         }
     }
 
-    // Toggle hamburger container visibility
+    // Get the elements with the specified class names
     let elemsHamClosed = document.getElementsByClassName("hamburger-button-container-closed");
     let elemsHamOpen = document.getElementsByClassName("hamburger-button-container-open");
-
+    // If there are no closed elements, they must be open
     if (elemsHamClosed.length == 0) {
+        // Change the first element's class to the closed version (there is only one element)
         elemsHamOpen[0].className = "hamburger-button-container-closed";
-    } else {
+    }
+    // Otherwise, the elements must be closed
+    else {
+        // Change the first element's class to the closed version (there is only one element)
         elemsHamClosed[0].className = "hamburger-button-container-open";
     }
 }
-
-// ===============================
-// Login/Profile Button Logic
-// ===============================
-
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-    return null;
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-    const username = getCookie('username');
-
-    const authLink = document.getElementById('auth-button');
-    const authLinkHamburger = document.getElementById('auth-button-hamburger');
-
-    if (username) {
-        if (authLink) {
-            authLink.href = 'dashboard.php';
-            authLink.textContent = 'Profile';
-        }
-        if (authLinkHamburger) {
-            authLinkHamburger.href = 'dashboard.php';
-            authLinkHamburger.textContent = 'Profile';
-        }
-    } else {
-        if (authLink) {
-            authLink.href = 'login.html';
-            authLink.textContent = 'Login';
-        }
-        if (authLinkHamburger) {
-            authLinkHamburger.href = 'login.html';
-            authLinkHamburger.textContent = 'Login';
-        }
-    }
-});
