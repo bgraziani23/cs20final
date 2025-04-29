@@ -1,0 +1,176 @@
+/* Base Layout */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #f4f4f4;
+    font-family: 'Fira Sans';
+}
+
+#page-content {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Buttons */
+.button, .choice-button, .submit-button, .dislike-button, .view-button {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    font-family: "Bebas Neue", sans-serif;
+    letter-spacing: 1.5px;
+    color: white;
+    background: #007BFF;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+
+.dislike-button {
+    background: #ff4d4d;
+}
+
+.view-button {
+    background: #4CAF50;
+}
+
+/* Overlays */
+#initial-choice-overlay, #preferences-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.choice-container, .preferences-container {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.choice-container h2, .preferences-container h2 {
+    font-family: "Bebas Neue", sans-serif;
+    letter-spacing: 1.5px;
+    color: #007BFF;
+    margin-bottom: 20px;
+}
+
+/* Form Elements */
+.preference-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.preference-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: "Bebas Neue", sans-serif;
+    letter-spacing: 1px;
+    color: #007BFF;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-group input, #state {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #007BFF;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Car Card */
+#car-swipe-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    touch-action: none;
+}
+
+#car-card {
+    width: 100%;
+    touch-action: pan-y;
+    user-select: none;
+    cursor: grab;
+    transition: transform 0.3s ease;
+    position: relative;
+    will-change: transform;
+}
+
+#car-card.dragging {
+    transition: none;
+    cursor: grabbing;
+}
+
+#car-card.swipe-left {
+    transform: translateX(-100%) rotate(-30deg);
+    opacity: 0;
+}
+
+#car-card.swipe-right {
+    transform: translateX(100%) rotate(30deg);
+    opacity: 0;
+}
+
+#car-image, #car-title, #car-details {
+    pointer-events: none;
+}
+
+#car-image {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.button-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* No Cars Message */
+#no-cars-message {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .input-group {
+        flex-direction: column;
+    }
+    
+    .button-container {
+        flex-direction: column;
+    }
+} 
