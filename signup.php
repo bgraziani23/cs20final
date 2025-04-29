@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 // Database connection settings
 $server = "localhost";
 $userid = "umegccruvfeiy";
@@ -35,12 +36,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 VALUES ('$username', '$email', '$password', '$target_file')";
 
         if ($conn->query($sql) === TRUE) {
-            echo "Account created successfully!";
+            // If account created successfully
+            echo "<script>
+                    alert('Account created successfully!');
+                    window.location.href = 'login.html';
+                  </script>";
+            exit();
         } else {
-            echo "Error: " . $conn->error;
+            // Database error
+            echo "<script>
+                    alert('Error creating account. Please try again.');
+                    window.location.href = 'signup.html';
+                  </script>";
+            exit();
         }
     } else {
-        echo "Error uploading profile picture.";
+        // File upload failed
+        echo "<script>
+                alert('Error uploading profile picture. Please try again.');
+                window.location.href = 'signup.html';
+              </script>";
+        exit();
     }
 }
 

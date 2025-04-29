@@ -133,6 +133,7 @@
 
   <!-- License Plate Form -->
   <div class="container">
+    <h1 style="text-align: center">Find the Value of Your Car</h1>
     <form method="GET">
       <label for="plate">License Plate:</label>
       <input type="text" id="plate" name="plate" value="<?php echo isset($_GET['plate']) ? htmlspecialchars($_GET['plate']) : 'ABC123'; ?>">
@@ -259,6 +260,16 @@ if (isset($_GET['plate']) && isset($_GET['state'])) {
 }
 ?>
   </div>
+
+  <footer class="footer">
+    <a href='contact.html'>Contact</a>
+    <a>&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+    <a href='about.html'>About Us</a>
+    <a>&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+    <a href='shop.php'>Shop</a>
+    <br />
+    &copy; 2025 Second Spin&trade;&nbsp;&nbsp;|&nbsp;&nbsp;All Rights Reserved
+  </footer>
 
 </body>
 </html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Listing - Second Spin</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"   
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <a href="home.html" class="logo-container">
+        <img src="images/logo.png">
+    </a>
+
+    <script src="navBar.js"></script>
+
+    <!-- Normal Nav Bar -->
+    <div class="nav-container">
+        <br />
+        <a href="home.html" class="nav-button">Home</a>
+        <a href="shop.php" class="nav-button">Shop</a>
+        <a href="tinder.html" class="nav-button">Tinder</a>
+        <a href="carvalue.php" class="nav-button">Car Value Calculator</a>
+        <a href="about.html" class="nav-button">About Us</a>
+        <a href="help.html" class="nav-button">Help</a>
+        <a href="reviews.html" class="nav-button">Reviews</a>
+        <a href="contact.html" class="nav-button">Contact Us</a>
+        <br /><br />
+    </div>
+
+    <!-- Hamburger Nav Bar -->
+    <div class="nav-hamburger-container">
+        <br /><a>Not showing</a><br />
+    </div>
+
+    <div class="hamburger-container">
+        <button onclick="toggleMenu()">&nbsp;&equiv;&nbsp;</button>
+    </div>
+
+    <h1 style="text-align: center;">Create a New Listing</h1>
+
+    <div class="form-container">
+        <form action="create_listing.php" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="model">Car Make and Model:</label>
+                <input type="text" id="model" name="model" required>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price ($):</label>
+                <input type="number" id="price" name="price" min="0" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="miles">Mileage:</label>
+                <input type="number" id="miles" name="miles" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" maxlength="2" required placeholder="e.g., CA">
+            </div>
+
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="image">Car Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Create Listing</button>
+        </form>
+    </div>
+</body>
+</html>
