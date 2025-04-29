@@ -19,14 +19,18 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get user's profile picture
+// get username from global variable
 $username = $_SESSION['username'];
+
+// get profile picture from database
 $userSql = "SELECT profilepic FROM Users WHERE Username = '$username'";
+
+//grab pfp
 $userResult = $conn->query($userSql);
 $userData = $userResult->fetch_assoc();
-$profilePic = $userData['profilepic'] ?? 'images/default_profile.png';
+$profilePic = $userData['profilepic'];
 
-// Get user's listings
+// get user listings
 $sql = "SELECT * FROM Cars WHERE Username = '$username' ORDER BY CarID DESC";
 $result = $conn->query($sql);
 ?>
@@ -45,25 +49,18 @@ $result = $conn->query($sql);
             padding: 20px;
         }
 
-        .welcome-section {
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .profile-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
         .profile-picture {
             width: 150px;
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 15px;
+            margin: 15px auto;
             border: 3px solid #4CAF50;
+            display: block;
+        }
+
+        .welcome-section {
+            text-align: center;
         }
 
         .create-listing-btn {
@@ -73,16 +70,17 @@ $result = $conn->query($sql);
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            margin-bottom: 30px;
-            font-size: 1.2em;
+            margin: 20px auto;
         }
 
         .create-listing-btn:hover {
             background: #45a049;
         }
 
-        .listings-section {
-            margin-top: 30px;
+        button.create-listing-btn {
+            border: none;
+            outline: none;
+            cursor: pointer;
         }
 
         .listing-grid {
@@ -96,8 +94,6 @@ $result = $conn->query($sql);
             border: 1px solid #ddd;
             border-radius: 10px;
             padding: 15px;
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .listing-card img {
@@ -108,15 +104,9 @@ $result = $conn->query($sql);
             margin-bottom: 10px;
         }
 
-        .listing-card h3 {
-            margin: 10px 0;
-            color: #333;
-        }
-
         .listing-card .price {
             color: #4CAF50;
             font-size: 1.2em;
-            font-weight: bold;
             margin: 10px 0;
         }
 
@@ -135,20 +125,18 @@ $result = $conn->query($sql);
             color: white;
         }
 
-        .edit-btn {
-            background: #2196F3;
+        .edit-btn { 
+            background: #2196F3; 
+        }
+        .edit-btn:hover { 
+            background: #1976D2; 
         }
 
-        .delete-btn {
-            background: #f44336;
+        .delete-btn { 
+            background: #f44336; 
         }
-
-        .edit-btn:hover {
-            background: #1976D2;
-        }
-
-        .delete-btn:hover {
-            background: #d32f2f;
+        .delete-btn:hover { 
+            background: #d32f2f; 
         }
 
         .no-listings {
@@ -207,32 +195,35 @@ $result = $conn->query($sql);
                 <h1>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
             </div>
             <a href="create_listing.html" class="create-listing-btn">Create New Listing</a>
+            <button onclick="signOut()" class="create-listing-btn">Sign Out</button>
         </div>
 
         <div class="listings-section">
             <h2>Your Current Listings</h2>
-            <?php if ($result->num_rows > 0): ?>
-                <div class="listing-grid">
-                    <?php while($row = $result->fetch_assoc()): ?>
-                        <div class="listing-card">
-                            <img src="<?php echo htmlspecialchars($row['Image']); ?>" alt="<?php echo htmlspecialchars($row['Model']); ?>">
-                            <h3><?php echo htmlspecialchars($row['Model']); ?></h3>
-                            <p class="price">$<?php echo number_format($row['Price']); ?></p>
-                            <p><?php echo number_format($row['Miles']); ?> miles</p>
-                            <p><?php echo htmlspecialchars($row['City'] . ', ' . $row['State']); ?></p>
-                            <div class="listing-actions">
-                                <a href="edit_listing.php?id=<?php echo $row['CarID']; ?>" class="edit-btn">Edit</a>
-                                <button onclick="deleteListing(<?php echo $row['CarID']; ?>)" class="delete-btn">Delete</button>
-                            </div>
-                        </div>
-                    <?php endwhile; ?>
-                </div>
-            <?php else: ?>
-                <div class="no-listings">
-                    <h3>You haven't created any listings yet.</h3>
-                    <p>Click the "Create New Listing" button above to get started!</p>
-                </div>
-            <?php endif; ?>
+            <?php 
+            if ($result->num_rows > 0) {
+                echo '<div class="listing-grid">';
+                while($row = $result->fetch_assoc()) {
+                    echo '<div class="listing-card">';
+                    echo '<img src="' . $row['Image'] . '" alt="' . $row['Model'] . '">';
+                    echo '<h3>' . $row['Model'] . '</h3>';
+                    echo '<p class="price">$' . $row['Price'] . '</p>';
+                    echo '<p>' . $row['Miles'] . ' miles</p>';
+                    echo '<p>' . $row['City'] . ', ' . $row['State'] . '</p>';
+                    echo '<div class="listing-actions">';
+                    echo '<a href="edit_listing.php?id=' . $row['CarID'] . '" class="edit-btn">Edit</a>';
+                    echo '<button onclick="deleteListing(' . $row['CarID'] . ')" class="delete-btn">Delete</button>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+                echo '</div>';
+            } else {
+                echo '<div class="no-listings">';
+                echo '<h3>You haven\'t created any listings yet.</h3>';
+                echo '<p>Click the "Create New Listing" button above to get started!</p>';
+                echo '</div>';
+            }
+            ?>
         </div>
     </div>
 
@@ -248,6 +239,8 @@ $result = $conn->query($sql);
 
     <script>
     function deleteListing(carId) {
+
+        // to delete listing, confirm and then run delete_listing.php with id
         if (confirm('Are you sure you want to delete this listing? This action cannot be undone.')) {
             fetch('delete_listing.php?id=' + carId)
                 .then(response => response.json())
@@ -262,6 +255,21 @@ $result = $conn->query($sql);
                     alert('Error deleting listing. Please try again.');
                 });
         }
+    }
+
+    function signOut() {
+        fetch('signout.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = 'login.html';
+                } else {
+                    alert('Error signing out: ' + data.error);
+                }
+            })
+            .catch(error => {
+                alert('Error signing out.');
+            });
     }
     </script>
 </body>

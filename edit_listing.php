@@ -52,54 +52,32 @@ $car = $result->fetch_assoc();
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .form-group input[type="text"],
-        .form-group input[type="number"],
-        .form-group textarea {
+        input, textarea {
             width: 100%;
             padding: 8px;
+            margin: 5px 0 15px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 16px;
         }
 
-        .form-group textarea {
+        textarea {
             height: 150px;
-            resize: vertical;
         }
 
         .current-image {
             max-width: 300px;
             margin: 10px 0;
-            border-radius: 5px;
         }
 
-        .submit-btn {
+        button {
             background: #4CAF50;
             color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
-        }
-
-        .submit-btn:hover {
-            background: #45a049;
         }
 
         .back-btn {
@@ -110,10 +88,6 @@ $car = $result->fetch_assoc();
             text-decoration: none;
             border-radius: 5px;
             margin-bottom: 20px;
-        }
-
-        .back-btn:hover {
-            background: #555;
         }
     </style>
 </head>
@@ -164,44 +138,30 @@ $car = $result->fetch_assoc();
         <form action="update_listing.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="carId" value="<?php echo $carId; ?>">
             
-            <div class="form-group">
-                <label for="model">Model:</label>
-                <input type="text" id="model" name="model" value="<?php echo htmlspecialchars($car['Model']); ?>" required>
-            </div>
+            <label>Model:</label>
+            <input type="text" name="model" value="<?php echo htmlspecialchars($car['Model']); ?>" required>
 
-            <div class="form-group">
-                <label for="price">Price:</label>
-                <input type="number" id="price" name="price" value="<?php echo $car['Price']; ?>" required>
-            </div>
+            <label>Price:</label>
+            <input type="number" name="price" value="<?php echo $car['Price']; ?>" required>
 
-            <div class="form-group">
-                <label for="miles">Miles:</label>
-                <input type="number" id="miles" name="miles" value="<?php echo $car['Miles']; ?>" required>
-            </div>
+            <label>Miles:</label>
+            <input type="number" name="miles" value="<?php echo $car['Miles']; ?>" required>
 
-            <div class="form-group">
-                <label for="state">State:</label>
-                <input type="text" id="state" name="state" value="<?php echo htmlspecialchars($car['State']); ?>" required>
-            </div>
+            <label>State:</label>
+            <input type="text" name="state" value="<?php echo htmlspecialchars($car['State']); ?>" required>
 
-            <div class="form-group">
-                <label for="city">City:</label>
-                <input type="text" id="city" name="city" value="<?php echo htmlspecialchars($car['City']); ?>" required>
-            </div>
+            <label>City:</label>
+            <input type="text" name="city" value="<?php echo htmlspecialchars($car['City']); ?>" required>
 
-            <div class="form-group">
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" required><?php echo htmlspecialchars($car['Description']); ?></textarea>
-            </div>
+            <label>Description:</label>
+            <textarea name="description" required><?php echo htmlspecialchars($car['Description']); ?></textarea>
 
-            <div class="form-group">
-                <label>Current Image:</label>
-                <img src="<?php echo htmlspecialchars($car['Image']); ?>" alt="Current car image" class="current-image">
-                <label for="image">Update Image (optional):</label>
-                <input type="file" id="image" name="image" accept="image/*">
-            </div>
+            <label>Current Image:</label>
+            <img src="<?php echo htmlspecialchars($car['Image']); ?>" alt="Current car image" class="current-image">
+            <label>Update Image (optional):</label>
+            <input type="file" name="image" accept="image/*">
 
-            <button type="submit" class="submit-btn">Update Listing</button>
+            <button type="submit">Update Listing</button>
         </form>
     </div>
 
