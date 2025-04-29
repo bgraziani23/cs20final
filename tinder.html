@@ -1,391 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="keywords" content="Cars, Used Cars, Cheap, Dealership, Selling">
-<title>Second Spin</title>
-<link rel="stylesheet" href="style.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-<style>
-    body {
-        background: #f4f4f4;;
-    }
-    .text-container {
-        text-align: left;
-        padding: 10px 100px;
-    }
-    h1 {
-        text-align: center;
-        padding-top: 15px;
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 40;
-        letter-spacing: 2px;
-    }
-    h2 {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 20;
-        letter-spacing: 1.5px;
-        margin-bottom: 0px;
-    }
-    ul {
-        padding-left: 30px;
-        list-style-position: outside;
-    }
-    .no-bullet {
-        padding-left: 15px;
-        list-style-type: none;
-    }
-    li {
-        margin-bottom: 10px;
-        padding-left: 25px;
-        text-indent: -33px;
-    }
-    li a {
-        color: #000;
-    }
-    .text-container a {
-        color: #000;
-    }
-    li a:hover {
-        color: #666;
-    }
-    .text-container a:hover {
-        color: #666;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Cars, Used Cars, Cheap, Dealership, Selling">
+    <title>Second Spin</title>
     
-    .about-container {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        padding-right: 100px;
-    }
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tinder.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-    .about-text {
-        width: 70%;
-    }
-
-    .founder-section {
-        width: 30%;
-        background: #e2e2e2;
-        padding: 20px;
-        margin-bottom: 30px;
-        border-radius: 10px;
-        text-align: center;
-    }
-    .founder-section p {
-        text-align: left;
-    }
-
-    .founder-img {
-        width: 100%;
-        max-width: 250px;
-        border-radius: 10px;
-        margin-bottom: 10px;
-    }
-
-    #car-card {
-        touch-action: pan-y;
-        user-select: none;
-        cursor: grab;
-        transition: transform 0.5s ease, opacity 0.5s ease;
-    }
-
-    #car-card.dragging {
-        transition: none;
-        cursor: grabbing;
-    }
-
-    .tinder-box {
-   display: none;
-   position: fixed;
-   z-index: 1;
-   left: 0;
-   top: 0;
-   width: 100%;
-   height: 100%;
-   overflow: auto;
-   background-color: rgba(0,0,0,0.4);
-}
-
-.tinder-content {
-   background-color: #fefefe;
-   margin: 15% auto;
-   padding: 20px;
-   border: 1px solid #888;
-   width: 80%;
-   border-radius: 10px;
-}
-
-#page-content.blurred {
-    filter: blur(5px);
-    transition: filter 0.3s ease;
-}
-
-.tinder {
-    z-index: 1000;
-}
-
-.close-button {
-   color: #aaa;
-   float: right;
-   font-size: 28px;
-   font-weight: bold;
-}
-
-.close-button:hover,
-.close-button:focus {
-   color: black;
-   text-decoration: none;
-   cursor: pointer;
-}
-
-
-    @media (max-width: 1000px) {
-        .about-container {
-            flex-direction: column;
-            align-items: center;
-        }
-        .about-container {
-            padding: 0px;
-        }
-        .about-text {
-            padding: 0px;
-            width: 100%;
-        }
-        .text-container {
-            text-align: left;
-            padding: 10px 50px;
-        }
-        .founder-section {
-            width: 70%;
-        }
-    }
-
-</style>
-
+    <script src="deviceRedirect.js"></script>
 </head>
-
 
 <body>
     <div id="page-content">
-    <a href="home.html" class="logo-container">
-        <img src="images/logo.png">
-    </a>
+        <a href="home.html" class="logo-container">
+            <img src="images/logo.png" alt="Second Spin Logo">
+        </a>
 
-    <script src="navBar.js"></script>
+        <script src="navBar.js"></script>
+        <div class="nav-container">
+            <br />
+            <a href="home.html" class="nav-button">Home</a>
+            <a href="shop.php" class="nav-button">Shop</a>
+            <a href="tinder.html" class="nav-button">Tinder</a>
+            <a href="carvalue.php" class="nav-button">Car Value Calculator</a>
+            <a href="about.html" class="nav-button">About Us</a>
+            <a href="help.html" class="nav-button">Help</a>
+            <a href="reviews.html" class="nav-button">Reviews</a>
+            <a href="contact.html" class="nav-button">Contact Us</a>
+            <br /><br />
+        </div>
 
-    <!-- Normal Nav Bar -->
-    <div class="nav-container">
-        <br />
-        <a href="home.html" class="nav-button">Home</a>
-        <a href="shop.php" class="nav-button">Shop</a>
-        <a href="tinder.html" class="nav-button">Tinder</a>
-        <a href="carvalue.php" class="nav-button">Car Value Calculator</a>
-        <a href="about.html" class="nav-button">About Us</a>
-        <a href="help.html" class="nav-button">Help</a>
-        <a href="reviews.html" class="nav-button">Reviews</a>
-        <a href="contact.html" class="nav-button">Contact Us</a>
-        <br /><br />
+        <div class="nav-hamburger-container">
+            <br /><a>Not showing</a><br />
+        </div>
+        <div class="hamburger-container">
+            <button onclick="toggleMenu()">&nbsp;&equiv;&nbsp;</button>
+        </div>
+        <span class="hamburger-button-container-closed">
+            <br /><br /><br /><br />
+            <a href="home.html" class="nav-button-hamburger-closed">Home</a>
+            <a href="shop.php" class="nav-button-hamburger-closed">Shop</a>
+            <a href="tinder.html" class="nav-button-hamburger-closed">Tinder</a>
+            <a href="carvalue.php" class="nav-button-hamburger-closed">Car Value Calculator</a>
+            <a href="about.html" class="nav-button-hamburger-closed">About Us</a>
+            <a href="help.html" class="nav-button-hamburger-closed">Help</a>
+            <a href="reviews.html" class="nav-button-hamburger-closed">Reviews</a>
+            <a href="contact.html" class="nav-button-hamburger-closed">Contact Us</a>
+        </span>
+
+        <div id="initial-choice-overlay">
+            <div class="choice-container">
+                <h2>How would you like to browse cars?</h2>
+                <button class="choice-button" onclick="startSwipingAll()">Start Swiping</button>
+                <button class="choice-button" onclick="showPreferences()">Choose Your Preferences</button>
+            </div>
+        </div>
+
+        <div id="preferences-overlay" style="display: none;">
+            <div class="preferences-container">
+                <h2>Set Your Preferences</h2>
+                <form id="preferences-form" onsubmit="submitPreferences(event)">
+                    <div class="preference-group">
+                        <label for="price-range">Price Range ($):</label>
+                        <div class="input-group">
+                            <input type="number" id="min-price" placeholder="Min Price" min="0">
+                            <input type="number" id="max-price" placeholder="Max Price" min="0">
+                        </div>
+                    </div>
+                    
+                    <div class="preference-group">
+                        <label for="mileage-range">Mileage Range:</label>
+                        <div class="input-group">
+                            <input type="number" id="min-mileage" placeholder="Min Mileage" min="0">
+                            <input type="number" id="max-mileage" placeholder="Max Mileage" min="0">
+                        </div>
+                    </div>
+                    
+                    <div class="preference-group">
+                        <label for="state">State:</label>
+                        <select id="state">
+                            <option value="">Any State</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="ME">Maine</option>
+                            <option value="VT">Vermont</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="CT">Connecticut</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Start Swiping</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="car-swipe-container" style="display: none;">
+            <div id="car-card" class="no-select">
+                <img id="car-image" src="" alt="Car Image">
+                <h2 id="car-title"></h2>
+                <p id="car-details"></p>
+            </div>
+        </div>
+
+        <div id="no-cars-message" style="display: none;">
+            <h2>No more cars available!</h2>
+            <p>Please adjust your preferences to see more cars.</p>
+            <button class="choice-button" onclick="showPreferences()">Select Preferences</button>
+        </div>
+
+
+        <footer class="footer">
+            <a href='contact.html'>Contact</a>
+            <a>&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+            <a href='about.html'>About Us</a>
+            <a>&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+            <a href='shop.php'>Shop</a>
+            <br />
+            &copy; 2025 Second Spin&trade;&nbsp;&nbsp;|&nbsp;&nbsp;All Rights Reserved
+        </footer>
     </div>
 
-    <!-- Hamburger Nav Bar -->
-    <div class="nav-hamburger-container">
-        <br /><a>Not showing</a><br />
-    </div>
 
-    <div class="hamburger-container">
-        <button onclick="toggleMenu()">&nbsp;&equiv;&nbsp;</button>
-    </div>
-
-    <span class="hamburger-button-container-closed">
-        <br /><br /><br /><br />
-        <a href="home.html" class="nav-button-hamburger-closed">Home</a>
-        <a href="shop.php" class="nav-button-hamburger-closed">Shop</a>
-        <a href="tinder.html" class="nav-button-hamburger-closed">Tinder</a>
-        <a href="carvalue.php" class="nav-button-hamburger-closed">Car Value Calculator</a>
-        <a href="about.html" class="nav-button-hamburger-closed">About Us</a>
-        <a href="help.html" class="nav-button-hamburger-closed">Help</a>
-        <a href="reviews.html" class="nav-button-hamburger-closed">Reviews</a>
-        <a href="contact.html" class="nav-button-hamburger-closed">Contact Us</a>
-    </span>
-
-<!-- Add this inside your <body> wherever you want the swipe feature to appear -->
-    <div id="car-swipe-container" style="text-align: center; margin: 50px auto; max-width: 400px;">
-        <div id="car-card" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-            <img id="car-image" src="" alt="Car Image" style="width: 100%; border-radius: 10px;">
-            <h2 id="car-title"></h2>
-            <p id="car-details"></p>
-            <div style="margin-top: 20px;">
-                <button onclick="swipe('left')" style="padding: 10px 20px; margin-right: 10px; background-color: #ff4d4d; color: white; border: none; border-radius: 5px;">&#10005; Dislike</button>
-                <button onclick="swipe('right')" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px;">&#10003; Like</button>
-    
-    
-
-</div>
-</div>
-</div>
-
-<footer class="footer">
-    <a href='contact.html'>Contact</a>
-    <a>&nbsp;&nbsp;|&nbsp;&nbsp;</a>
-    <a href='about.html'>About Us</a>
-    <a>&nbsp;&nbsp;|&nbsp;&nbsp;</a>
-    <a href='shop.php'>Shop</a>
-    <br />
-    &copy; 2025 Second Spin&trade;&nbsp;&nbsp;|&nbsp;&nbsp;All Rights Reserved
-</footer>
-
-
-
-
-
-
-<!-- END OF PAGE CONTENT -->
-</div>
-
-    
-<div id="no-cars-message" style="display: none; text-align: center; margin-top: 20px;">
-    <h2>No more cars available!</h2>
-    <button id="load-more-cars" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px;">Show More Cars</button>
-  </div>
-
-  <div id="tinder" class="tinder">
-    <div class="tinder-content">
-        <span class="close-button" onclick="closeTinder()">&times;</span>
-        <img id="tinder-car-image" src="" alt="Car Image">
-        <h2 id="tinder-car-title"></h2>
-        <p>Price: <span id="tinder-price"></span></p>
-        <p>Miles: <span id="tinder-miles"></span></p>
-        <p>Location: <span id="tinder-location"></span></p>
-        <p>Description: <span id="tinder-description"></span></p>
-        <p>Seller: <span id="tinder-seller"></span></p>
-    </div>
- </div>
- 
-
-
-  <script>
-    let cars = [];
-    let currentCarIndex = 0;
-    const card = document.getElementById('car-card');
-    let initialPos = 0;
-    let currentPos = 0;
-    let isDragging = false;
-    
-    // Function to display a car
-    function showCar(index) {
-        if (index >= cars.length) {
-            document.getElementById('car-swipe-container').style.display = 'none';
-            document.getElementById('no-cars-message').style.display = 'block';
-            return;
-        }
-        const car = cars[index];
-        document.getElementById('car-image').src = car.Image;
-        document.getElementById('car-title').innerText = `${car.Model}`;
-        document.getElementById('car-details').innerText = `Price: ${car.Price}, Miles: ${car.Miles}, Location: ${car.City}, ${car.State}`;
-        card.style.transform = 'translateX(0)';
-        card.style.opacity = '1';
-    }
-    
-    // Function to handle swipe gestures
-    function handleGesture() {
-        const deltaX = currentPos - initialPos;
-        if (Math.abs(deltaX) > 100) {
-            const direction = deltaX > 0 ? 'right' : 'left';
-            animateSwipe(direction);
-        } else {
-            card.style.transition = 'transform 0.3s ease';
-            card.style.transform = 'translateX(0px)';
-        }
-    }
-    
-    // Function to animate swipe
-    function animateSwipe(direction) {
-        card.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
-        card.style.transform = `translateX(${direction === 'right' ? 1000 : -1000}px)`;
-        card.style.opacity = '0';
-        setTimeout(() => {
-            currentCarIndex++;
-            showCar(currentCarIndex);
-        }, 300);
-    }
-    
-    // Function to handle button clicks
-    function swipe(direction) {
-        animateSwipe(direction);
-    }
-
-    card.addEventListener('click', () => {
-    showtinder(currentCarIndex);
-    });
-    
-    card.addEventListener('touchstart', (e) => {
-    initialPos = e.touches[0].clientX;
-    isDragging = false;
-}, { passive: true });
-
-card.addEventListener('touchmove', (e) => {
-    currentPos = e.touches[0].clientX;
-    if (Math.abs(currentPos - initialPos) > 10) {
-        isDragging = true;
-    }
-}, { passive: true });
-
-card.addEventListener('touchend', () => {
-    if (!isDragging) {
-        showTinder(currentCarIndex);
-    } else {
-        handleGesture();
-    }
-});
-
-        function showTiner(index) {
-            const car = cars[index];
-            document.getElementById('tinder-car-image').src = car.Image;
-            document.getElementById('tinder-car-title').innerText = car.Model;
-            document.getElementById('tinder-price').innerText = car.Price;
-            document.getElementById('tinder-miles').innerText = car.Miles;
-            document.getElementById('tinder-location').innerText = `${car.City}, ${car.State}`;
-            document.getElementById('tinder-description').innerText = car.Description;
-            document.getElementById('tinder-seller').innerText = car.Username;
-            tinder.style.display = "block";
-            document.getElementById('page-content').classList.add('blurred');
-
-        }
-
-        // Function to close the tinder box
-        function closeTinder() {
-            tinder.style.display = "none";
-            document.getElementById('page-content').classList.remove('blurred');
-        }
-
-        // Close the tinder box if the user clicks outside of it
-        window.onclick = function(event) {
-            if (event.target == tinder) {
-                closeTinder();
-            }
-        }
-
-    
-    // Fetch car data from the PHP script
-    fetch('get_cars.php')
-        .then(response => response.json())
-        .then(data => {
-            cars = data;
-            showCar(currentCarIndex);
-        })
-        .catch(error => {
-            console.error('Error fetching car data:', error);
-        });
-    </script>
-    
-
-
-
-
+    <script src="tinder.js"></script>
 </body>
+</html>
