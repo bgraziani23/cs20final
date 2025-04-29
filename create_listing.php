@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Handle image upload
     $target_dir = "images/";
     $file_extension = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
-    $image_filename = "images/car_" . $newCarID . "." . $file_extension;
+    $image_filename = "car_" . $newCarID . "." . $file_extension;
     $target_file = $target_dir . $image_filename;
     
     // Check if image file is valid
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
         // Insert data into database
         $sql = "INSERT INTO Cars (CarID, Model, Price, Miles, State, City, Image, Description, Username) 
-                VALUES ($newCarID, '$model', $price, $miles, '$state', '$city', '$image_filename', '$description', '$username')";
+                VALUES ($newCarID, '$model', $price, $miles, '$state', '$city', '$target_file', '$description', '$username')";
         
         if ($conn->query($sql) === TRUE) {
             // Redirect to shop page after successful insertion
